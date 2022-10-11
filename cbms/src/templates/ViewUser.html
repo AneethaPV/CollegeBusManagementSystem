@@ -1,0 +1,51 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">User</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">User</a></li>
+            <!--<li class="breadcrumb-item active">Default</li>-->
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12">
+    <div class="card">
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table class="table table-hover datatable">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>EmailId </th>
+      <th>Mobile</th>
+      <th>Address</th>
+      <th>College</th>
+      <th>Category</th>
+      <th>Dept</th>
+      <th>Des/Sem</th>
+    </tr>
+    </thead>
+    {% for i in val %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{i['name']}}</td>
+      <td>{{i['email']}}</td>
+      <td>{{i['mobile']}}</td>
+      <td>{{i['address']}}</td>
+      <td>{{i['college']}}</td>
+      <td>{{i['category']}}</td>
+      <td>{{i['department']}}</td>
+      <td>{{i['designation']}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</form>
+</body>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Stop</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Stop</a></li>
+            <!--<li class="breadcrumb-item active">Default</li>-->
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12">
+    <div class="card">
+<body>
+<form id="form1" name="form1" method="post" action="/add_stop">
+  <table class="table table-hover datatable">
+      <thead>
+    <tr>
+      <th>#</th>
+      <th>Route_name</th>
+      <th>Stop_name</th>
+      <th>Stop_fees</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>mrngtime</th>
+      <th>evngtime</th>
+      <th colspan="2">Action</th>
+      <!--<th></th>-->
+    </tr>
+    </thead>
+    {% for i in val %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{i['route_name']}}</td>
+      <td>{{i['stop_name']}}</td>
+      <td>{{i['stop_fees']}}</td>
+      <td>{{i['latitude']}}</td>
+      <td>{{i['longitude']}}</td>
+      <td>{{i['mrngtime']}}</td>
+      <td>{{i['evngtime']}}</td>
+      <td><a class="btn btn-success btn-sm" href="/edit_stop?id={{ i['stop_id'] }}"><i class="bi bi-pencil-square"></a></td>
+      <td><a class="btn btn-danger btn-sm" href="/delete_stop?id={{ i['stop_id'] }}"><i class="bi bi-trash"></i></a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <input class="btn btn-primary" type="submit" name="Submit" value="Add" />
+</form>
+</body>
+    </div>
+</div>
+{% endblock %}

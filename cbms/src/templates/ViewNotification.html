@@ -1,0 +1,47 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Notification</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Notification</a></li>
+            <!--<li class="breadcrumb-item active">Default</li>-->
+        </ol>
+    </nav>
+</div>
+
+
+
+
+<div class="col-12">
+    <div class="card">
+<body>
+<form id="form1" name="form1" method="post" action="/add_notification">
+  <table class="table table-hover datatable">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Notification</th>
+      <th>Date</th>
+      <th colspan="2">Action</th>
+      <!--<th></th>-->
+    </tr>
+    </thead>
+    {% for i in val %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{i['notification']}}</td>
+      <td>{{i['date']}}</td>
+      <td><a class="btn btn-success btn-sm" href="/edit_notification?id={{ i['notification_id'] }}"><i class="bi bi-pencil-square"></i></a></td>
+      <td><a class="btn btn-danger btn-sm" href="/delete_notification?id={{ i['notification_id'] }}"><i class="bi bi-trash"></i></a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <input class="btn btn-primary" type="submit" name="Submit" value="Add" />
+</form>
+</body>
+    </div>
+</div>
+{% endblock %}

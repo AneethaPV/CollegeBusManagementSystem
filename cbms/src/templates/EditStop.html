@@ -1,0 +1,62 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="edit_stop1">
+  <table class="table table-hover">
+  	 <tr>
+      <th>Route no</th>
+      <td>
+          <select class="form-control" name="select">
+            {% for i in data1 %}
+            <option value="{{i['route_id']}}" {% if i['route_id'] == data['route_id'] %}selected{% endif %}>{{i['route_name']}}</option>
+            {% endfor %}
+          </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Stop_name</th>
+      <td><label>
+        <input class="form-control" type="text" name="textfield1" value="{{ data['stop_name'] }}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th>Stop_fees</th>
+      <td><label>
+        <input class="form-control" type="number" name="textfield2" value="{{ data['stop_fees'] }}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th>latitude</th>
+      <td><label>
+        <input class="form-control" type="text" name="textfield3" value="{{ data['latitude'] }}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th>longitude</th>
+      <td><label>
+        <input class="form-control" type="text" name="textfield4" value="{{ data['longitude'] }}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th>mrngtime</th>
+      <td><label>
+        <input class="form-control" type="time" name="textfield5" value="{{ data['mrngtime'] }}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th>evngtime</th>
+      <td><label>
+        <input class="form-control" type="time" name="textfield6" value="{{ data['evngtime'] }}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><label>
+  <input class="btn btn-dark" type="submit" name="Submit" value="UPDATE" />
+  </label></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

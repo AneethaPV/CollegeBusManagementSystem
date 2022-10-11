@@ -1,0 +1,28 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="edit_notification1">
+  <table class="table table-hover">
+    <tr>
+      <th>Notification</th>
+      <td><label>
+        <input class="form-control" type="text" name="textfield" value="{{ data['notification'] }}"/>
+      </label></td>
+    </tr>
+    <!--<tr>-->
+      <!--<th>Date</th>-->
+      <!--<td><label>-->
+        <!--<input type="date" name="textfield" />-->
+      <!--</label></td>-->
+    <!--</tr>-->
+    <tr>
+      <th></th>
+      <td><label>
+        <input class="btn btn-dark" type="submit" name="Submit" value="UPDATE" />
+        </label></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

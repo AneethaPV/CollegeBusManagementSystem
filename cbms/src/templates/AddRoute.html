@@ -1,0 +1,51 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Route</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="/view_route">Route</a></li>
+            <li class="breadcrumb-item active">Add Route</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-6">
+    <div class="card">
+
+<body>
+<form id="form1" name="form1" method="post" action="add_route1">
+  <table class="table table-hover">
+    <tr>
+      <th>Route no </th>
+      <td>
+        <input class="form-control" type="text" name="textfield" />
+      </td>
+    </tr>
+    <tr>
+      <th>Route code </th>
+      <td>
+        <input class="form-control" type="text" name="textfield2" />
+      </td>
+    </tr>
+    <tr>
+      <th>Route Name </th>
+      <td>
+        <input class="form-control" type="text" name="textfield3" />
+      </td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>
+  <input type="submit" class="btn btn-dark" name="Submit" value="Add"/>
+  </td>
+    </tr>
+  </table>
+</form>
+</body>
+    </div>
+</div>
+
+{% endblock %}

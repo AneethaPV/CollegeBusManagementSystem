@@ -1,0 +1,47 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Notification</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Notification</a></li>
+            <li class="breadcrumb-item active">Add Notification</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-6">
+    <div class="card">
+
+
+<body>
+<form id="form1" name="form1" method="post" action="add_notification1">
+  <table class="table table-hover">
+    <tr>
+      <th>Notification</th>
+      <td>
+        <input class="form-control" type="text" name="textfield" />
+      </td>
+    </tr>
+    <!--<tr>-->
+      <!--<th>Date</th>-->
+      <!--<td><label>-->
+        <!--<input type="date" name="textfield" />-->
+      <!--</label></td>-->
+    <!--</tr>-->
+    <tr>
+      <th></th>
+      <td>
+        <input type="submit" name="Submit" value="Post" />
+        </td>
+    </tr>
+  </table>
+</form>
+</body>
+
+    </div>
+</div>
+
+{% endblock %}

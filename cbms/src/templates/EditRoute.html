@@ -1,0 +1,35 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="edit_route1">
+  <table class="table table-hover">
+    <tr>
+      <th>Route no </th>
+      <td><label>
+        <input class="form-control" type="text" name="textfield" value="{{ data['route_no'] }}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th>Route code </th>
+      <td><label>
+        <input class="form-control" type="text" name="textfield2" value="{{ data['route_code'] }}" />
+      </label></td>
+    </tr>
+    <tr>
+      <th>Route Name </th>
+      <td><label>
+        <input class="form-control" type="text" name="textfield3"  value="{{ data['route_name'] }}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><label>
+  <input class="btn btn-dark" type="submit" name="Submit" value="UPDATE" />
+  </label></td>
+    </tr>
+  </table>
+</form>
+</body>
+
+{% endblock %}

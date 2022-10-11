@@ -1,0 +1,80 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Stop</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Stop</a></li>
+            <li class="breadcrumb-item active">Add Stop</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-6">
+    <div class="card">
+
+<body>
+<form id="form1" name="form1" method="post" action="add_stop1">
+  <table class="table table-hover">
+  	 <tr>
+      <th>Route no</th>
+      <td>
+        <select class="form-control" name="select">
+            {% for i in val %}
+            <option value="{{i['route_id']}}">{{i['route_name']}}</option>
+            {% endfor %}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Stop_name</th>
+      <td>
+        <input class="form-control" type="text" name="textfield1" />
+      </td>
+    </tr>
+    <tr>
+      <th>Stop_fees</th>
+      <td>
+        <input class="form-control" type="number" name="textfield2" />
+      </td>
+    </tr>
+    <tr>
+      <th>latitude</th>
+      <td>
+        <input class="form-control" type="text" name="textfield3" />
+      </td>
+    </tr>
+    <tr>
+      <th>longitude</th>
+      <td>
+        <input class="form-control" type="text" name="textfield4" />
+      </td>
+    </tr>
+    <tr>
+      <th>mrngtime</th>
+      <td>
+        <input class="form-control" type="time" name="textfield5" />
+      </td>
+    </tr>
+    <tr>
+      <th>evngtime</th>
+      <td>
+        <input class="form-control" type="time" name="textfield6" />
+      </td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>
+  <input type="submit" class="btn btn-dark" name="Submit" value="Add" />
+  </td>
+    </tr>
+  </table>
+</form>
+</body>
+
+    </div>
+</div>
+
+{% endblock %}

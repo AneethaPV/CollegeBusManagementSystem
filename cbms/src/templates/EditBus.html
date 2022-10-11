@@ -1,0 +1,57 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="edit_bus1" enctype="multipart/form-data">
+  <table class="table table-hover">
+    <tr>
+      <th>Bus_regno</th>
+      <td><label>
+        <input class="form-control" type="text" name="textfield" value="{{ data['bus_regno'] }}" />
+      </label></td>
+    </tr>
+    <tr>
+      <th>Bus_no</th>
+      <td><label>
+        <input class="form-control" type="text" name="textfield2" value="{{ data['bus_no'] }}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th>Bus_name</th>
+      <td><label>
+        <input class="form-control" type="text" name="textfield3" value="{{ data['bus_name'] }}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th>Bus_image</th>
+      <td><label>
+        <input class="form-control" type="hidden" name="textfield4" value="{{ data['bus_image'] }}"/>
+        <input class="form-control" type="file" name="f" />
+      </label></td>
+    </tr>
+    <tr>
+      <th>Seat</th>
+      <td><label>
+        <input class="form-control" type="text" name="textfield5" value="{{ data['seat'] }}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th>Status</th>
+      <td><label>
+      <select class="form-control" name="select" value="{{ data['status'] }}">
+        <option>active</option>
+        <option>not active</option>
+      </select>
+      </label></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><label>
+  <input class="btn btn-dark" type="submit" name="Submit" value="UPDATE" />
+  </label></td>
+    </tr>
+  </table>
+</form>
+</body>
+
+{% endblock %}

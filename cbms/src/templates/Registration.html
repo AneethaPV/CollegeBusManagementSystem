@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Registration</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="registration" enctype="multipart/form-data">
+  <table width="200" border="1">
+    <tr>
+      <td>Name</td>
+      <td><label>
+        <input type="text" name="nm" pattern="[A-Z a-z.]{3,25}" title="Must contain at least 8 or more characters" required />
+      </label></td>
+    </tr>
+    <tr>
+      <td>Emailid</td>
+      <td><label>
+        <input type="text" name="em"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" title="Please enter valid Emailid" required/>
+      </label></td>
+    </tr>
+    <tr>
+      <td>Mobile</td>
+      <td><label>
+        <input type="text" name="mob" maxlength="10"  pattern="[6-9]{1}[0-9]{9}" title="Please enter valid Mobileno" required/>
+      </label></td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td><label>
+        <textarea name="add" required></textarea>
+      </label></td>
+    </tr>
+    <tr>
+      <td>College</td>
+      <td><label>
+        <select name="clg">
+            <option>KMCT College of Engineering</option>
+            <option>KMCT School of Business</option>
+            <option>KMCT College of Engineering for Women</option>
+            <option>KMCT Polytechnic College</option>
+            <option>KMCT College of Architecture</option>
+            <option>KMCT College of Teacher Education</option>
+            <option>KMCT College of Pharmaceutical Sciences</option>
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+      <td>Username</td>
+      <td><label>
+        <input type="text" name="un" required pattern="[A-Z a-z.]{3,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td><label>
+        <input type="password" name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
+      </label></td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td><label>
+        <select name="select" onchange="Geeks()" id="t">
+          <option>Student</option>
+          <option>Staff</option>
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+      <td><p id="b">Branch</p></td>
+      <td><label>
+        <input type="text" name="brn" pattern="[A-Z a-z.]{3,25}" required/>
+      </label></td>
+    </tr>
+    <tr>
+      <td><p id="s">Semester</p></td>
+      <td><label>
+        <input type="text" name="sem" pattern="[1-8]" required/>
+      </label></td>
+    </tr>
+    <tr>
+      <td>Image</td>
+      <td><label>
+        <input type="file" name="f" />
+      </label></td>
+    </tr>
+    <!--<tr>-->
+      <!--<td>Designation</td>-->
+      <!--<td><label>-->
+        <!--<input type="text" name="des" />-->
+      <!--</label></td>-->
+    <!--</tr>-->
+    <tr>
+      <td colspan="2" align="center"><label>
+      <input type="submit" name="Submit" value="Register" />
+      </label></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><label>
+          <a href="/">Have an Account? Sign In</a>
+      </label></td>
+    </tr>
+  </table>
+</form>
+
+        <script>
+            function Geeks() {
+
+                var x = document.getElementById("t").value;
+                if(x=="Student")
+                {
+                document.getElementById("b").innerHTML =
+                "Branch";
+                 document.getElementById("s").innerHTML =
+                "Sem";
+                }
+                else{
+                 document.getElementById("b").innerHTML =
+                "Department";
+                 document.getElementById("s").innerHTML =
+                "Designation";
+                }
+            }
+        </script>
+</body>
+</html>
