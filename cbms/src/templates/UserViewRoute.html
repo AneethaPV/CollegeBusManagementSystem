@@ -1,30 +1,57 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>ViewRoutemap</title>
-</head>
+{% extends 'index_user.html' %}
+{% block body %}
 
-<body>
-<form id="form1" name="form1" method="post" action="">
-  <table width="200" border="1">
-    <tr>
-      <td>#</td>
-      <td>Route No</td>
-      <td>Route Code</td>
-      <td>Route Name</td>
-      <td></td>
-    </tr>
-    {% for i in val %}
-    <tr>
-      <td>{{ loop.index }}</td>
-      <td>{{i['route_no']}}</td>
-      <td>{{i['route_code']}}</td>
-      <td>{{i['route_name']}}</td>
-      <td><a href="/view_route1?id={{ i['route_id'] }}">View</td>
-    </tr>
-    {% endfor %}
-  </table>
-</form>
-</body>
-</html>
+
+<div class="card-body">
+    <h5 class="card-title">Route</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Route</a></li>
+            <!--<li class="breadcrumb-item active">Default</li>-->
+        </ol>
+    </nav>
+</div>
+
+<!-- Top Selling -->
+            <div class="col-12">
+              <div class="card top-selling overflow-auto">
+
+                <div class="card-body pb-0">
+                  <h5 class="card-title"></h5>
+
+                  <table class="table table-borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col">Route No</th>
+                        <th scope="col">Route Code</th>
+                        <th scope="col">Route Name</th>
+                        <th scope="col">View</th>
+                      </tr>
+                    </thead>
+
+                      {% for i in val %}
+
+                    <tbody>
+                      <tr>
+                        <td>{{i['route_no']}}</td>
+                        <td>{{i['route_code']}}</td>
+                        <td>{{i['route_name']}}</td>
+                        <!--<td><a href="/view_route1?id={{ i['route_id'] }}">View</td>-->
+                        <td><a class="btn btn-primary " href="/view_route1?id={{ i['route_id'] }}"><i class="bi bi-eye"></i></a></td>
+                      </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
+            </div><!-- End Top Selling -->
+
+
+
+
+{% endblock %}
