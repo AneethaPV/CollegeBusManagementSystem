@@ -1,0 +1,45 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Leave Requests</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Leave</a></li>
+            <!--<li class="breadcrumb-item active">Default</li>-->
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12">
+    <div class="card">
+<body>
+<form id="form1" name="form1" method="post" action="/">
+  <table class="table table-hover datatable">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Driver name</th>
+      <th>Reason</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    {% for i in val %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{i['driver_name']}}</td>
+      <td>{{i['reason']}}</td>
+      <td>{{i['from']}}</td>
+      <td>{{i['to']}}</td>
+      <td>{% if i['status']== "pending" %}<a class="btn btn-primary btn-sm" href="/leave_request1?id={{i['leave_id']}}">Verify</a>{% else %} verified {% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</form>
+</body>
+    </div>
+</div>
+{% endblock %}

@@ -15,12 +15,33 @@
 <div class="col-12">
     <div class="card">
 <body>
-<form id="form1" name="form1" method="post" action="/add_stop">
+
+<form id="form2" name="form2" method="post" action="/search_stop">
+
+    <table>
+    <tr>
+    <th>Select Route</th>
+    <th><select class="form-control" name="select" required>
+            <option value="None">Select Route</option>
+            {% for i in v %}
+            <option value="{{i['route_id']}}">{{i['route_name']}}</option>
+            {% endfor %}
+          </select>
+    </th>
+    <th>
+        <input type="submit" class="btn btn-primary w-100" name="Submit" value="Search"/>
+    </th>
+    </tr>
+    </table>
+
+
+    <br><br>
+
   <table class="table table-hover datatable">
       <thead>
     <tr>
-      <th>#</th>
-      <th>Route_name</th>
+      <!--<th>#</th>-->
+      <!--<th>Route_name</th>-->
       <th>Stop_name</th>
       <th>Stop_fees</th>
       <th>latitude</th>
@@ -33,8 +54,8 @@
     </thead>
     {% for i in val %}
     <tr>
-      <td>{{ loop.index }}</td>
-      <td>{{i['route_name']}}</td>
+      <!--<td>{{ loop.index }}</td>-->
+      <!--<td>{{i['route_name']}}</td>-->
       <td>{{i['stop_name']}}</td>
       <td>{{i['stop_fees']}}</td>
       <td>{{i['latitude']}}</td>
@@ -46,9 +67,11 @@
     </tr>
     {% endfor %}
   </table>
-  <input class="btn btn-primary" type="submit" name="Submit" value="Add" />
+    <a href="add_stop" class="btn btn-primary" >Add </a>
 </form>
+
 </body>
+
     </div>
 </div>
 {% endblock %}

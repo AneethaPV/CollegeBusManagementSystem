@@ -1,53 +1,188 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>SelectRoute</title>
-</head>
+{% extends 'index_user.html' %}
+{% block body %}
+<div class="card-body">
+    <h5 class="card-title">Select Route</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Select Route</a></li>
+            <!--<li class="breadcrumb-item active">Default</li>-->
+        </ol>
+    </nav>
+</div>
+
+<!-- Top Selling -->
+            <div class="col-12">
+              <div class="card top-selling overflow-auto">
+
+                <div class="card-body pb-0">
 
 <body>
+
+
 <form id="form1" name="form1" method="post" action="">
-  <table width="200" border="1">
+  <table class="table table-hover">
     <tr>
       <td>Route</td>
       <td>
-        <select name="select1">
+        <select class="form-control" name="route" id="route" required>
+            <option value="">Select Route</option>
+            {% for i in val %}
+            <option value="{{i['route_id']}}"  >{{i['route_name']}}</option>
+            {% endfor %}
         </select>
       </td>
     </tr>
+
+
+    <tr>
+      <td>Stop</td>
+      <td><select class="form-control" name="stop" id="stop" required>
+            <option value="">Select Stop</option>
+        </select>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td>Bus</td>
+      <td>
+        <select class="form-control" id="bus" name="bus" required>
+           <option value="">Select Bus</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Year</td>
+      <td>
+        <select class="form-control" id="year" name="year" required>
+           <option value="">Select Year</option>
+           <option>2022</option>
+           <option>2023</option>
+           <option>2024</option>
+           <option>2025</option>
+        </select>
+      </td>
+    </tr>
+
+
     <tr>
       <td>Month</td>
       <td>
-        <select name="select2">
-            <option value="None">Select Month</option>
-            <option>Jan</option>
-            <option>Feb</option>
-            <option>Mar</option>
-            <option>Apr</option>
+        <select class="form-control" name="select2" required>
+            <option value="">Select Month</option>
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
             <option>May</option>
-            <option>Jun</option>
+            <option>June</option>
             <option>July</option>
-            <option>Aug</option>
-            <option>Sep</option>
-            <option>Oct</option>
-            <option>Nov</option>
-            <option>Dec</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
         </select>
       </td>
     </tr>
     <tr>
-      <td>Stop</td>
+      <td><p>Amount</p></td>
+      <td><p class="form-control" id="amt" name="amount"></p>
+      <input class="form-control" type="text" id="amt1" name="amt1" hidden>
+
+      </td>
+    </tr>
+  <tr>
+      <th></th>
       <td>
-        <select name="select3">
-        </select>
+  <input class="btn btn-success" type="submit" name="Submit" value="Pay" />
       </td>
-    </tr>
-    <tr>
-      <td>Amount</td>
-      <td></td>
-    </tr>
+  </tr>
   </table>
-  <input type="submit" name="Submit" value="Pay" />
 </form>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+
+$(document).ready(function(){
+    $("select#route").change(function() {
+
+        if ($(this).val() != 'default') {
+
+            var br = $('#route option:selected').val();
+
+
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: "/index",
+                                        data: { brand: br },
+
+                                        success: function(response) {
+                                        var opt = '';
+                                        var opt1 = '';
+                                        var flag = 0;
+                                        for (var i=0, l=response.length; i<l; i=i+2)
+                                        {
+                                         if(response[i]+""=="" )
+                                        {
+                                            flag=flag+1;
+                                        }
+                                        if(flag==1)
+                                        {
+                                            opt+='<option value="'+response[i]+'">'+response[i+1]+'</option>';
+                                        }
+                                        else
+                                        {
+                                            opt1+='<option value="'+response[i]+'">'+response[i+1]+'</option>';
+                                        }
+                                    }
+
+                        $('select#stop').empty();
+
+                            $('select#stop').append(opt1);
+
+                         $('select#bus').html('').prop('disabled',false)
+
+                            $('select#bus').empty();
+                            $('select#bus').append(opt);
+                                        }
+                                    });
+                }
+
+            });
+
+             $("select#stop").change(function() {
+
+                if ($(this).val() != 'default') {
+
+                    var br = $('#stop option:selected').val();
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "/index1",
+                        data: { brand: br },
+
+                        success: function(response) {
+                     document.getElementById("amt").innerHTML=response+"";
+                     document.getElementById("amt1").value=response+"";
+                       }
+
+
+            });
+            }
+        });
+});
+</script>
 </body>
-</html>
+
+
+</div>
+    </div>
+            </div>
+
+
+
+{% endblock %}
+

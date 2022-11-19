@@ -1,13 +1,27 @@
 {% extends 'admin_index.html' %}
 {% block body %}
 
+<div class="card-body">
+    <h5 class="card-title">Stop</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="/view_stop">Stop</a></li>
+            <li class="breadcrumb-item active">Edit Stop</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-6">
+    <div class="card">
+
 <body>
 <form id="form1" name="form1" method="post" action="edit_stop1">
   <table class="table table-hover">
   	 <tr>
       <th>Route no</th>
       <td>
-          <select class="form-control" name="select">
+          <select class="form-control" name="select" required>
             {% for i in data1 %}
             <option value="{{i['route_id']}}" {% if i['route_id'] == data['route_id'] %}selected{% endif %}>{{i['route_name']}}</option>
             {% endfor %}
@@ -17,37 +31,37 @@
     <tr>
       <th>Stop_name</th>
       <td><label>
-        <input class="form-control" type="text" name="textfield1" value="{{ data['stop_name'] }}"/>
+        <input class="form-control" type="text" name="textfield1" value="{{ data['stop_name'] }}" pattern="[A-Z a-z.]{3,25}" required/>
       </label></td>
     </tr>
     <tr>
       <th>Stop_fees</th>
       <td><label>
-        <input class="form-control" type="number" name="textfield2" value="{{ data['stop_fees'] }}"/>
+        <input class="form-control" type="number" name="textfield2" value="{{ data['stop_fees'] }}" required/>
       </label></td>
     </tr>
     <tr>
       <th>latitude</th>
       <td><label>
-        <input class="form-control" type="text" name="textfield3" value="{{ data['latitude'] }}"/>
+        <input class="form-control" type="text" name="textfield3" value="{{ data['latitude'] }}" required/>
       </label></td>
     </tr>
     <tr>
       <th>longitude</th>
       <td><label>
-        <input class="form-control" type="text" name="textfield4" value="{{ data['longitude'] }}"/>
+        <input class="form-control" type="text" name="textfield4" value="{{ data['longitude'] }}" required/>
       </label></td>
     </tr>
     <tr>
       <th>mrngtime</th>
       <td><label>
-        <input class="form-control" type="time" name="textfield5" value="{{ data['mrngtime'] }}"/>
+        <input class="form-control" type="time" name="textfield5" value="{{ data['mrngtime'] }}" required/>
       </label></td>
     </tr>
     <tr>
       <th>evngtime</th>
       <td><label>
-        <input class="form-control" type="time" name="textfield6" value="{{ data['evngtime'] }}"/>
+        <input class="form-control" type="time" name="textfield6" value="{{ data['evngtime'] }}" required/>
       </label></td>
     </tr>
     <tr>
@@ -59,4 +73,6 @@
   </table>
 </form>
 </body>
+    </div>
+</div>
 {% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'index_driver.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Request leave</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Driver Leave</a></li>
+            <li class="breadcrumb-item active">Request leave</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12">
+    <div class="card">
+<body>
+
+
+<form id="form1" name="form1" method="post" action="/req_leave1">
+  <table class="table table-hover">
+      <tr>
+      <th>Reason</th>
+      <td><input class="form-control" type="text" name=rsn" required/></td>
+      </tr>
+
+      <tr>
+      <th>From</th>
+      <td><input class="form-control" type="date" min="{{d}}" name="frm"/></td>
+      </tr>
+      <tr>
+      <th>To</th>
+      <td><input class="form-control" type="date" min="{{d}}" name="to"/></td>
+      </tr>
+
+      <tr>
+      <th>
+          <td> <input type="submit" name="submit" value="SEND"></td>
+      </th>
+      </tr>
+  </table>
+
+
+</form>
+</body>
+
+    </div>
+</div>
+{% endblock %}
+
+

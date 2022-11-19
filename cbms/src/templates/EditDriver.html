@@ -1,56 +1,74 @@
 {% extends 'admin_index.html' %}
 {% block body %}
 
+
+
+<div class="card-body">
+    <h5 class="card-title">Driver</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="/view_driver">Driver</a></li>
+            <li class="breadcrumb-item active">Edit Driver</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-6">
+    <div class="card">
+
+
+
 <body>
 <form id="form1" name="form1" method="post" action="edit_driver1" enctype="multipart/form-data">
   <table class="table table-hover">
-    <tr>
-      <th>Driver_no</th>
-      <td><label>
-        <input class="form-control" type="text" name="textfield" value="{{ data['driver_no'] }}" />
-      </label></td>
-    </tr>
+    <!--<tr>-->
+      <!--<th>Driver_no</th>-->
+      <!--<td><label>-->
+        <!--<input class="form-control" type="text" name="textfield" value="{{ data['driver_no'] }}" />-->
+      <!--</label></td>-->
+    <!--</tr>-->
     <tr>
       <th>Driver_name</th>
       <td><label>
-        <input class="form-control" type="text" name="textfield2" value="{{ data['driver_name'] }}"/>
+        <input class="form-control" type="text" name="textfield2" value="{{ data['driver_name'] }}" pattern="[A-Z a-z.]{3,25}" required/>
       </label></td>
     </tr>
     <tr>
       <th>Driver_address</th>
       <td><label>
-        <input class="form-control" type="text" name="textfield3" value="{{ data['driver_address'] }}"/>
+        <input class="form-control" type="text" name="textfield3" value="{{ data['driver_address'] }}" required/>
       </label></td>
     </tr>
     <tr>
       <th>Driver_image</th>
       <td><label>
-        <input class="form-control" type="hidden" name="textfield4" value="{{ data['driver_image'] }}"/>
+        <input class="form-control" type="hidden" name="textfield4" value="{{ data['driver_image'] }}" required/>
         <input class="form-control" type="file" name="f" />
       </label></td>
     </tr>
     <tr>
       <th>Driver_email</th>
       <td><label>
-        <input class="form-control" type="text" name="textfield5" value="{{ data['driver_email'] }}"/>
+        <input class="form-control" type="text" name="textfield5" value="{{ data['driver_email'] }}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" title="Please enter valid Emailid" required/>
       </label></td>
     </tr>
     <tr>
       <th>Driver_mobile</th>
       <td><label>
-        <input class="form-control" type="text" name="textfield6" value="{{ data['driver_mobile'] }}"/>
+        <input class="form-control" type="text" name="textfield6" value="{{ data['driver_mobile'] }}" pattern="[6-9]{1}[0-9]{9}" title="Please enter valid Mobileno" required/>
       </label></td>
     </tr>
     <tr>
       <th>Driver_license</th>
       <td><label>
-        <input class="form-control" type="text" name="textfield7" value="{{ data['driver_license'] }}"/>
+        <input class="form-control" type="text" name="textfield7" value="{{ data['driver_license'] }}" required/>
       </label></td>
     </tr>
     <tr>
       <th>status</th>
       <td><label>
-        <select class="form-control" name="select" value="{{ data['status'] }}">
+        <select class="form-control" name="select" value="{{ data['status'] }}" required>
           <option>current</option>
           <option>backup</option>
         </select>
@@ -65,4 +83,7 @@
   </table>
 </form>
 </body>
+    </div>
+</div>
+
 {% endblock %}

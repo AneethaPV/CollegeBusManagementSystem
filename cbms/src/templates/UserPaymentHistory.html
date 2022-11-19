@@ -1,22 +1,59 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>PaymentHistory</title>
-</head>
+{% extends 'index_user.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Payment History</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Payment History</a></li>
+            <!--<li class="breadcrumb-item active">Default</li>-->
+        </ol>
+    </nav>
+</div>
+
+
+   <div class="col-12">
+              <div class="card top-selling overflow-auto">
+
+                <div class="card-body pb-0">
+
+                  <table class="table table-borderless">
+                    <thead>
 
 <body>
 <form id="form1" name="form1" method="post" action="">
-  <table width="200" border="1">
+  <table class="table table-borderless datatable">
+      <thead>
     <tr>
-      <td>Month</td>
-      <td>&nbsp;</td>
+      <th></th>
+      <th>Year</th>
+      <th>Month</th>
+      <!--<th>Stop</th>-->
+      <th>Amount</th>
+      <th>Date</th>
+      <th>&nbsp;</th>
     </tr>
+    </thead>
+      {% for i in val %}
+      <tbody>
     <tr>
-      <td>&nbsp;</td>
-      <td><a href="#">Download</a></td>
+      <td>{{ loop.index }}</td>
+      <td>{{i['year']}}</td>
+      <td>{{i['month']}}</td>
+      <!--<td>{{i['stop']}}</td>-->
+      <td>{{i['amount']}}</td>
+      <td>{{i['nd']}}</td>
+      <td><a href="/user_pay_history1?id={{i['pay_id']}}">Download</a></td>
     </tr>
+    </tbody>
+      {% endfor %}
   </table>
 </form>
 </body>
-</html>
+    </div>
+              </div>
+            </div>
+
+
+{% endblock %}

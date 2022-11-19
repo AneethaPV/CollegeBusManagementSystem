@@ -12,40 +12,81 @@
     </nav>
 </div>
 
+
+<body>
 <div class="col-6">
     <div class="card">
 
-<body>
-<form id="form1" name="form1" method="post" action="add_route1">
-  <table class="table table-hover">
-    <tr>
-      <th>Route no </th>
-      <td>
-        <input class="form-control" type="text" name="textfield" />
-      </td>
-    </tr>
-    <tr>
-      <th>Route code </th>
-      <td>
-        <input class="form-control" type="text" name="textfield2" />
-      </td>
-    </tr>
-    <tr>
-      <th>Route Name </th>
-      <td>
-        <input class="form-control" type="text" name="textfield3" />
-      </td>
-    </tr>
-    <tr>
-      <th></th>
-      <td>
-  <input type="submit" class="btn btn-dark" name="Submit" value="Add"/>
-  </td>
-    </tr>
-  </table>
+
+<!--<form id="form1" name="form1" method="post" action="add_route1">-->
+  <!--<table class="table table-hover">-->
+    <!--<tr>-->
+      <!--<th>Route no </th>-->
+      <!--<td>-->
+        <!--<input class="form-control" type="text" name="textfield" />-->
+      <!--</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<th>Route code </th>-->
+      <!--<td>-->
+        <!--<input class="form-control" type="text" name="textfield2"  pattern="[A-Z -]{3,20}" title="All letters must be capital with hyphon" required/>-->
+      <!--</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<th>Route Name </th>-->
+      <!--<td>-->
+        <!--<input class="form-control" type="text" name="textfield3" />-->
+      <!--</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<th></th>-->
+      <!--<td>-->
+  <!--<input type="submit" class="btn btn-dark" name="Submit" value="Add"/>-->
+  <!--</td>-->
+    <!--</tr>-->
+  <!--</table>-->
+<!--</form>-->
+<!--<div class="pt-4 pb-2">-->
+    <!--&lt;!&ndash;<h5 class="card-title text-center pb-0 fs-4">Add Route</h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;<p class="text-center small">Enter your personal details to create account</p>&ndash;&gt;-->
+<!--</div>-->
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+        <div class="pt-4 pb-2">
+            <!--<h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>-->
+            <!--<p class="text-center small">Enter your personal details to create account</p>-->
+        </div>
+
+<form class="row g-3 needs-validation" novalidate action="/add_route1" method="post">
+    <table class="table table-hover">
+
+    <div class="col-12">
+        <label class="form-label"><h5>Route No</h5></label>
+        <input type="text" name="textfield" class="form-control" pattern="([1-9]|[1-9][0-9]|100)" required>
+        <div class="invalid-feedback">Enter no below 100</div>
+    </div>
+    <div class="col-12">
+        <label class="form-label"><h5>Route Code</h5></label>
+        <input type="text" name="textfield2" class="form-control" pattern="[A-Z]{3,20}" required>
+        <div class="invalid-feedback">Must contain at least 3 or more capital characters</div>
+    </div>
+    <div class="col-12">
+        <label class="form-label"><h5>Route Name</h5></label>
+        <input type="text" name="textfield3" class="form-control" pattern="[A-Z -]{3,30}" required>
+        <div class="invalid-feedback">Must contain at least 3 or more characters with hyphon seperated</div>
+    </div>
+
+    <div class="col-12">
+        <input type="submit" class="btn btn-primary w-100" name="Submit" value="Add"/>
+    </div>
 </form>
-</body>
+
+            </div>
+        </div>
     </div>
 </div>
+</body>
 
 {% endblock %}

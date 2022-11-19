@@ -15,13 +15,15 @@
 <div class="col-6">
     <div class="card">
 
+
+
 <body>
 <form id="form1" name="form1" method="post" action="add_stop1">
   <table class="table table-hover">
-  	 <tr>
-      <th>Route no</th>
+    <tr>
+      <th>Route Name</th>
       <td>
-        <select class="form-control" name="select">
+          <select class="form-control" name="select" required>
             {% for i in val %}
             <option value="{{i['route_id']}}">{{i['route_name']}}</option>
             {% endfor %}
@@ -29,46 +31,45 @@
       </td>
     </tr>
     <tr>
-      <th>Stop_name</th>
+      <th>Stop Name</th>
       <td>
-        <input class="form-control" type="text" name="textfield1" />
+          <input type="text" class="form-control" name="textfield1" pattern="[A-Z a-z.]{3,25}" required>
       </td>
     </tr>
     <tr>
-      <th>Stop_fees</th>
+      <th>Stop Fees</th>
       <td>
-        <input class="form-control" type="number" name="textfield2" />
+        <input type="number" class="form-control"  name="textfield2" required>
       </td>
     </tr>
     <tr>
-      <th>latitude</th>
+      <th>Latitude</th>
       <td>
-        <input class="form-control" type="text" name="textfield3" />
+        <input type="text" class="form-control" name="textfield3" required>
       </td>
     </tr>
     <tr>
-      <th>longitude</th>
+      <th>Longitude</th>
       <td>
-        <input class="form-control" type="text" name="textfield4" />
+        <input class="form-control" type="text" name="textfield4" required/>
       </td>
     </tr>
     <tr>
-      <th>mrngtime</th>
+      <th>Mrng Time</th>
       <td>
-        <input class="form-control" type="time" name="textfield5" />
+        <input class="form-control"  type="time" name="textfield5" required>
       </td>
     </tr>
     <tr>
-      <th>evngtime</th>
+      <th>Evng Time</th>
       <td>
-        <input class="form-control" type="time" name="textfield6" />
+         <input class="form-control"  type="time" name="textfield6" required>
       </td>
     </tr>
     <tr>
-      <th></th>
-      <td>
-  <input type="submit" class="btn btn-dark" name="Submit" value="Add" />
-  </td>
+    <th colspan="2">
+        <input class="btn btn-primary w-100" type="submit" name="Submit" value="Add" />
+    </th>
     </tr>
   </table>
 </form>

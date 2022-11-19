@@ -1,0 +1,48 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Driver-Bus</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Assign Driver to Bus</a></li>
+            <!--<li class="breadcrumb-item active">Default</li>-->
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12">
+    <div class="card">
+<body>
+<form id="form1" name="form1" method="post" action="/adddriverbus">
+  <table class="table table-hover datatable">
+      <thead>
+    <tr>
+      <!--<th>#</th>-->
+      <th>Bus name</th>
+      <th>Driver name</th>
+      <th>From</th>
+      <th>To</th>
+      <th colspan="2">Action</th>
+    </tr>
+    </thead>
+    {% for i in val %}
+    <tr>
+      <!--<td>{{ loop.index }}</td>-->
+      <td>{{i['bus_name']}}</td>
+      <td>{{i['driver_name']}}</td>
+      <td>{{i['from']}}</td>
+      <td>{{i['to']}}</td>
+      <td><a class="btn btn-success btn-sm" href="/editdriverbus?id={{ i['driverbus_id'] }}"><i class="bi bi-pencil-square"></a></td>
+      <td><a class="btn btn-danger btn-sm" href="/deletedriverbus?id={{ i['driverbus_id'] }}"><i class="bi bi-trash"></i></a></td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <input class="btn btn-primary" type="submit" name="Submit" value="Add" />
+</form>
+</body>
+    </div>
+</div>
+{% endblock %}

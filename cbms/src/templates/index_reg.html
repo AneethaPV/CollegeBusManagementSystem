@@ -183,7 +183,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pages / Register - NiceAdmin Bootstrap Template</title>
+  <title>Pages / Register - QuickBus</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -228,7 +228,7 @@
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
                   <img src="../static/ad/assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">CBMS</span>
+                  <span class="d-none d-lg-block">QUICKBUS</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -237,15 +237,15 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
+                    <h5 class="card-title text-center pb-0 fs-4">Sign-Up</h5>
                     <!--<p class="text-center small">Enter your personal details to create account</p>-->
                   </div>
 
                   <form class="row g-3 needs-validation" novalidate action="/registration" method="post" enctype="multipart/form-data">
                     <div class="col-12">
                       <label class="form-label">Name</label>
-                      <input type="text" name="nm" class="form-control"  pattern="[A-Z a-z.]{3,25}" required>
-                      <div class="invalid-feedback">Please, enter your name! Must contain at least 3 or more characters</div>
+                      <input type="text" name="nm" class="form-control" pattern="[A-Z]{1}[A-Z a-z.]{3,25}" required>
+                      <div class="invalid-feedback">First letter should be capital and Must contain at least 3 or more characters</div>
                     </div>
 
                     <div class="col-12">
@@ -281,7 +281,7 @@
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                         <input type="text" name="un" class="form-control" pattern="[A-Z a-z 0-9._]{3,25}" required>
-                        <div class="invalid-feedback">Please choose a username.</div>
+                        <div class="invalid-feedback">Must contain at least 3 or more characters and can have . and _</div>
                       </div>
                     </div>
 
@@ -296,7 +296,7 @@
                       <label class="form-label">College</label>
                       <!--<input type="file" name="email" class="form-control" id="yourEmail" required>-->
                         <select name="clg" class="form-select" required>
-									<option value="none" >Select College</option>
+                                    <option value="">select</option>
                                     <option>KMCT College of Engineering</option>
                                     <option>KMCT School of Business</option>
                                     <option>KMCT College of Engineering for Women</option>
@@ -319,10 +319,26 @@
                       <div class="invalid-feedback">Please select a category!</div>
                     </div>
 
+                    <!--<div class="col-12">-->
+                      <!--<label id="b" class="form-label">Branch</label>-->
+                      <!--<input type="text" name="brn" class="form-control" pattern="[A-Z ]{2,30}"required>-->
+                      <!--<div class="invalid-feedback">All letter should be capital and Must contain at least 2 or more characters</div>-->
+                    <!--</div>-->
+
                     <div class="col-12">
-                      <label id="b" class="form-label">Branch</label>
-                      <input type="text" name="brn" class="form-control" required>
-                      <div class="invalid-feedback">Please enter a Branch!</div>
+                      <label class="form-label">Branch</label>
+                      <!--<input type="file" name="email" class="form-control" id="yourEmail" required>-->
+                        <select name="brn" class="form-select" required>
+                                    <option value="">select</option>
+                                    <option>MCA</option>
+                                    <option>MBA</option>
+                                    <option>BTECH Mechanical Engineering</option>
+                                    <option>BTECH Electronics and Communication Engineering</option>
+                                    <option>BTECH Computer Science Engineering</option>
+                                    <option>BTECH Automobile Engineering</option>
+                                    <option>BTECH Civil Engineering</option>
+								</select>
+                        <div class="invalid-feedback">Please select a Branch!</div>
                     </div>
 
                     <div class="col-12">

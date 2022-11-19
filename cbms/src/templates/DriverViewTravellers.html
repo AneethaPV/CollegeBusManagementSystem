@@ -1,0 +1,45 @@
+{% extends 'index_driver.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Driver</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Driver schedule</a></li>
+            <li class="breadcrumb-item active">View Travellers</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12">
+    <div class="card">
+<body>
+<form id="form1" name="form1" method="post" action="/view_payment1">
+
+  <table class="table table-hover datatable">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>User</th>
+      <th>Stop</th>
+      <th>Amount</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    {% for i in val %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{i['name']}}</td>
+      <td>{{i['stop_name']}}</td>
+      <td>{{i['stop_fees']}}</td>
+      <td>{% if i['status']=='paid' %}<span class="badge bg-success rounded-pill">{{i['status']}}</span>
+      {% else %}<span class="badge bg-danger rounded-pill">{{i['status']}}</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</form>
+</body>
+{% endblock %}
+
+

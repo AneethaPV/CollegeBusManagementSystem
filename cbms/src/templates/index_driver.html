@@ -208,14 +208,14 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="../static/user_img/{{session['lid']}}.jpg" alt="Profile" class="rounded-circle">
+            <img src="../static/driver/{{session['lid']}}.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">DRIVER</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 
               <li class="dropdown-header">
-              <h6>Driver</h6>
+              <h6>{{session['name']}}</h6>
               <span>Dashboard</span>
             </li>
             <li>
@@ -273,7 +273,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="/userdash">
+        <a class="nav-link " href="/driverdash">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -282,35 +282,43 @@
 
 
       <li class="nav-item">
-        <a class="nav-link " href="/user_profile">
+        <a class="nav-link " href="/driver_profile">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="/user_viewroute">
+        <a class="nav-link " href="/driver_viewroute">
+          <i class="bi bi-question-circle"></i>
+          <span>Route</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " href="/driver_schedule">
           <i class="bi bi-question-circle"></i>
           <span>Schedule</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="">
-          <i class="bi bi-envelope"></i>
-          <span>Travellers List</span>
+        <a class="nav-link " href="/driver_leave">
+          <i class="bi bi-question-circle"></i>
+          <span>Request Leave</span>
         </a>
-      </li><!-- End Contact Page Nav -->
+      </li><!-- End F.A.Q Page Nav -->
+
 
       <li class="nav-item">
-        <a class="nav-link " href="/user_notification">
+        <a class="nav-link " href="/driver_notification">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Notification</span>
         </a>
       </li><!-- End Login Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="user_feedback">
+        <a class="nav-link " href="/driver_feedback">
           <i class="bi bi-dash-circle"></i>
           <span>Feedback</span>
         </a>

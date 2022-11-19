@@ -1,0 +1,21 @@
+
+            <select name="select3" required>
+                <option value="">Select Stop</option>
+                    {% for i in val2 %}
+                <option value="{{ i['stop_id'] }}">{{ i['stop_name'] }}</option>
+                    {% endfor %}
+                </select>
+
+
+              <tr>
+      <td>Bus</td>
+      <td>
+                   <select name="select3" required>
+                <option value="">Select Bus</option>
+                    {% for i in val3 %}
+                <option value="{{ i['bus_id'] }}">{{ i['bus_name'] }}</option>
+                    {% endfor %}
+
+
+
+

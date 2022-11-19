@@ -1,0 +1,57 @@
+{% extends 'index_user.html' %}
+{% block body %}
+
+<body>
+
+<h2>Payment Summary</h2>
+<form id="form1" name="form1" method="post" action="/pay_proceed1">
+  <table class="table table-hover">
+
+    <tr>
+      <th>Route</th>
+      <td>{{ data1['route_name'] }}</td>
+    </tr>
+
+
+    <tr>
+      <th>Stop</th>
+      <td>{{ data3['stop_name'] }}</td>
+    </tr>
+
+
+    <tr>
+      <th>Bus</th>
+      <td>{{ data2['bus_name'] }}</td>
+    </tr>
+
+
+    <tr>
+      <th>Year</th>
+      <td>{{ session.year }}</td>
+    </tr>
+
+
+     <tr>
+      <th>Month</th>
+      <td>{{ session.month }}</td>
+    </tr>
+
+    <tr>
+      <th>Ammount</th>
+      <td>{{ session.amt1}}</td>
+    </tr>
+
+
+    <tr>
+      <th></th>
+      <td><label>
+
+
+        <input class="btn btn-dark" type="submit" name="Submit" value="PROCEED TO PAYMENT" />
+        </label></td>
+    </tr>
+  </table>
+</form>
+
+</body>
+{% endblock %}

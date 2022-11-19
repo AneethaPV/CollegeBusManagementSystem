@@ -1,0 +1,65 @@
+{% extends 'admin_index.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Driver-Bus</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Assign Driver to Bus</a></li>
+            <li class="breadcrumb-item active">Edit Driver-Bus</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-6">
+    <div class="card">
+
+<body>
+<form id="form1" name="form1" method="post" action="editdriverbus1">
+  <table class="table table-hover">
+  	 <tr>
+      <th>Bus Name</th>
+      <td>
+          <select class="form-control" name="select" required>
+            {% for i in data1 %}
+            <option value="{{i['bus_id']}}" {% if i['bus_id'] == data['bus_id'] %} selected {% endif %}>{{i['bus_name']}}</option>
+            {% endfor %}
+          </select>
+      </td>
+    </tr>
+
+    <tr>
+      <th>Driver Name</th>
+      <td>
+          <select class="form-control" name="select1" required>
+            {% for i in data2 %}
+            <option value="{{i['driver_id']}}" {% if i['driver_id'] == data['driver_id'] %}selected{% endif %}>{{i['driver_name']}}</option>
+            {% endfor %}
+          </select>
+      </td>
+    </tr>
+
+    <tr>
+        <th>From</th>
+        <td><input class="form-control" type="date" name="from" value="{{ data['from'] }}"></td>
+    </tr>
+
+    <tr>
+        <th>To</th>
+        <td><input class="form-control" type="date" name="to" value="{{ data['to'] }}"></td>
+    </tr>
+
+
+    <tr>
+      <th></th>
+      <td><label>
+  <input class="btn btn-dark" type="submit" name="Submit" value="UPDATE" />
+  </label></td>
+    </tr>
+  </table>
+</form>
+</body>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'index_driver.html' %}
+{% block body %}
+
+
+<div class="card-body">
+    <h5 class="card-title">Feedback</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Feedback</a></li>
+            <li class="breadcrumb-item active">Feedback Response</li>
+        </ol>
+    </nav>
+</div>
+
+<!-- Top Selling -->
+            <div class="col-12">
+              <div class="card top-selling overflow-auto">
+
+                <div class="card-body pb-0">
+                  <h5 class="card-title"></h5>
+
+                  <table class="table table-borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Feedback</th>
+                        <th scope="col">Response</th>
+                      </tr>
+                    </thead>
+
+                      {% for i in val %}
+
+                    <tbody>
+                      <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{i['date']}}</td>
+                        <td>{{i['feedback']}}</td>
+                        <td>{{i['response']}}</td>
+                      </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
+            </div><!-- End Top Selling -->
+
+
+
+
+{% endblock %}

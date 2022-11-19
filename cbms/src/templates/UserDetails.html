@@ -1,0 +1,119 @@
+{% extends 'index_user.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Assigned History</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Assigned History</a></li>
+            <!--<li class="breadcrumb-item active">Default</li>-->
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12">
+    <div class="card">
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table class="table table-hover datatable">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Route Name</th>
+      <th>Stop Name</th>
+      <th>Month</th>
+      <th>Amount</th>
+      <th>Bus No</th>
+      <th>Bus Regno</th>
+      <th>Bus Name</th>
+      <th>Bus Image</th>
+      <th>Driver Name</th>
+      <th>Driver Mobile</th>
+      <th>Driver Image</th>
+    </tr>
+    </thead>
+    {% for i in val %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{i['route_name']}}</td>
+      <td>{{i['stop_name']}}</td>
+      <td>{{i['month']}}</td>
+      <td>{{i['amount']}}</td>
+      <td>{{i['bus_no']}}</td>
+      <td>{{i['bus_regno']}}</td>
+      <td>{{i['bus_name']}}</td>
+      <td><img src="../static/bus/{{i['bus_image']}}" width="100" height="100"/> </td>
+      <td>{{i['driver_name']}}</td>
+      <td>{{i['driver_mobile']}}</td>
+      <td><img src="../static/driver/{{i['driver_image']}}" width="100" height="100"/> </td>
+    </tr>
+    {% endfor %}
+  </table>
+</form>
+</body>
+    </div>
+</div>
+{% endblock %}
+
+<!--<body>-->
+
+<!--<h2>Details</h2>-->
+<!--<form id="form1" name="form1" method="post" action="">-->
+  <!--<table class="table table-hover">-->
+
+    <!--<tr>-->
+      <!--<th>Route Name</th>-->
+      <!--<td>{{ val['route_name'] }}</td>-->
+    <!--</tr>-->
+
+
+    <!--<tr>-->
+      <!--<th>Stop Name</th>-->
+      <!--<td>{{ val['stop_name'] }}</td>-->
+    <!--</tr>-->
+
+    <!--<tr>-->
+      <!--<th>Amount</th>-->
+      <!--<td>{{ val['amount'] }}</td>-->
+    <!--</tr>-->
+
+
+    <!--<tr>-->
+      <!--<th>Bus No</th>-->
+      <!--<td>{{ val['bus_no'] }}</td>-->
+    <!--</tr>-->
+
+     <!--<tr>-->
+      <!--<th>Bus Regno</th>-->
+      <!--<td>{{ val['bus_regno'] }}</td>-->
+    <!--</tr>-->
+
+    <!--<tr>-->
+      <!--<th>Bus Name</th>-->
+      <!--<td>{{ val['bus_name'] }}</td>-->
+    <!--</tr>-->
+
+    <!--<tr>-->
+      <!--<th>Bus Image </th>-->
+      <!--<td><img src="static/bus{{ val['bus_image'] }}"></td>-->
+    <!--</tr>-->
+
+     <!--<tr>-->
+      <!--<th>Driver Name</th>-->
+      <!--<td>{{ val['driver_name'] }}</td>-->
+    <!--</tr>-->
+
+    <!--<tr>-->
+      <!--<th>Driver Mobile</th>-->
+      <!--<td>{{ val['driver_name'] }}</td>-->
+    <!--</tr>-->
+
+    <!--<tr>-->
+      <!--<th>Driver Image </th>-->
+      <!--<td><img src="static/driver{{ val['driver_image'] }}"></td>-->
+    <!--</tr>-->
+
+  <!--</table>-->
+<!--</form>-->
+<!--</body>-->

@@ -1,35 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>DriverHome</title>
-</head>
+{% extends 'index_driver.html' %}
+{% block body %}
 
-<body>
-<form id="form1" name="form1" method="post" action="">
-  <table width="200" border="1">
-    <tr>
-      <td><a href="driver_profile">Profile</a></td>
-    </tr>
-    <tr>
-      <td><a href="view_routemap">Route</a></td>
-    </tr>
-    <tr>
-      <td><a href="select_route">Pay</a></td>
-    </tr>
-    <tr>
-      <td><a href="pay_history">Payment History</a></td>
-    </tr>
-    <tr>
-      <td><a href="user_feedback">Feedback</a></td>
-    </tr>
-    <tr>
-      <td><a href="user_notification">Notifications</a></td>
-    </tr>
-    <tr>
-      <td><a href="/">Logout</a></td>
-    </tr>
-  </table>
-</form>
-</body>
-</html>
+<div class="card-body">
+    <h5 class="card-title">Welcome to Your Dashboard</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <!--<li class="breadcrumb-item active">Default</li>-->
+        </ol>
+    </nav>
+</div>
+
+<div class="col-6">
+    <!--<h4>Welcome</h4>-->
+    <div class="card">
+
+
+<!--<body>-->
+
+<!--<img src="../static/images/admindash.jpg" height="200px" width="200px">-->
+
+<!--</body>-->
+        <!-- Slides only carousel -->
+              <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="../static/images/admindash.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <!--<div class="carousel-item">-->
+                    <!--<img src="assets/img/slides-2.jpg" class="d-block w-100" alt="...">-->
+                  <!--</div>-->
+                  <!--<div class="carousel-item">-->
+                    <!--<img src="assets/img/slides-3.jpg" class="d-block w-100" alt="...">-->
+                  <!--</div>-->
+                </div>
+              </div><!-- End Slides only carousel-->
+
+    </div>
+</div>
+{% endblock %}

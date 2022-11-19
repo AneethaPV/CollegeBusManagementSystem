@@ -1,39 +1,87 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>ViewProfile</title>
-</head>
-<body>
-<form id="form1" name="form1" method="post" action="">
+{% extends 'admin_index.html' %}
+{% block body %}
 
-  <table>
+<div class="card-body">
+    <h5 class="card-title">Payment</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Payment</a></li>
+            <!--<li class="breadcrumb-item active">Add Stop</li>-->
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12">
+    <div class="card">
+<body>
+<form id="form1" name="form1" method="post" action="/view_payment1">
+
+    <table>
     <tr>
-      <th>Select Bus</th>
-      <td><select name="clg">
-            <option>Bus 1</option>
-            <option>Bus 2</option>
-        </select></td>
+    <th>Select Bus</th>
+    <th><select class="form-control" name="select" required>
+            <option value="None">Select Bus</option>
+            {% for i in val %}
+            <option value="{{i['bus_id']}}">{{i['bus_name']}}</option>
+            {% endfor %}
+          </select>
+    </th>
+    <th>Select Year</th>
+    <th><select class="form-control" name="select1" required>
+            <option value="">Select Year</option>
+            <option>2022</option>
+            <option>2023</option>
+            <option>2024</option>
+            <option>2025</option>
+        </select>
+      </th>
+    <th>Select Month</th>
+    <th><select class="form-control" name="select2" required>
+            <option value="">Select Month</option>
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
+        </select>
+      </th>
+      <th>
+        <input type="submit" class="btn btn-primary w-100" name="Submit" value="Search"/>
+      </th>
     </tr>
   </table>
-
-
-  <table width="200" border="1">
+  <br><br>
+  <table class="table table-hover datatable">
+    <thead>
     <tr>
       <th>#</th>
-      <th>Date</th>
+      <th>User</th>
+      <th>Stop</th>
       <th>Amount</th>
+      <th>Status</th>
     </tr>
-    {% for i in val %}
+    </thead>
+    {% for i in val1 %}
     <tr>
-      <td>{{i['loop.index']}}</td>
-      <td>{{i['datetime']}}</td>
+      <td>{{ loop.index }}</td>
+      <td>{{i['name']}}</td>
+      <td>{{i['stop_name']}}</td>
       <td>{{i['amount']}}</td>
+      <td>{% if i['status']=='paid' %}<span class="badge bg-success rounded-pill">{{i['status']}}</span>
+      {% else %}<span class="badge bg-danger rounded-pill">{{i['status']}}</span>{% endif %}</td>
     </tr>
     {% endfor %}
   </table>
 </form>
 </body>
-</html>
+{% endblock %}
 
 

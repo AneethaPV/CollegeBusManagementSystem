@@ -1,0 +1,83 @@
+{% extends 'index_user.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Current Details</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Current Details</a></li>
+            <!--<li class="breadcrumb-item active">Default</li>-->
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12">
+    <div class="card">
+<body>
+
+<h2>Details</h2>
+<form id="form1" name="form1" method="post" action="">
+  <table class="table table-hover">
+
+    <tr>
+      <th>Route Name</th>
+      <td>{{ val['route_name'] }}</td>
+    </tr>
+
+
+    <tr>
+      <th>Stop Name</th>
+      <td>{{ val['stop_name'] }}</td>
+    </tr>
+
+    <tr>
+      <th>Amount</th>
+      <td>{{ val['amount'] }}</td>
+    </tr>
+
+
+    <tr>
+      <th>Bus No</th>
+      <td>{{ val['bus_no'] }}</td>
+    </tr>
+
+     <tr>
+      <th>Bus Regno</th>
+      <td>{{ val['bus_regno'] }}</td>
+    </tr>
+
+    <tr>
+      <th>Bus Name</th>
+      <td>{{ val['bus_name'] }}</td>
+    </tr>
+
+    <tr>
+      <th>Bus Image </th>
+      <td><img src="static/bus/{{ val['bus_image'] }}"></td>
+    </tr>
+
+     <tr>
+      <th>Driver Name</th>
+      <td>{{ val['driver_name'] }}</td>
+    </tr>
+
+    <tr>
+      <th>Driver Mobile</th>
+      <td>{{ val['driver_mobile'] }}</td>
+    </tr>
+
+    <tr>
+      <th>Driver Image </th>
+      <td><img src="static/driver/{{ val['driver_image'] }}" width="200px" height="200px"></td>
+    </tr>
+
+  </table>
+</form>
+</body>
+
+    </div>
+</div>
+{% endblock %}
+
+

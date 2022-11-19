@@ -19,52 +19,47 @@
 <body>
 <form id="form1" name="form1" method="post" action="add_driver1"  enctype="multipart/form-data">
   <table class="table table-hover">
-    <tr>
-      <th>Driver_no</th>
-      <td>
-        <input class="form-control" type="text" name="textfield" />
-      </td>
-    </tr>
+
     <tr>
       <th>Driver_name</th>
       <td>
-        <input class="form-control" type="text" name="textfield2" />
+        <input class="form-control" type="text" name="textfield2" pattern="[A-Z a-z.]{3,25}" title="Must contain at least 3 or more characters" required/>
       </td>
     </tr>
     <tr>
       <th>Driver_address</th>
       <td>
-        <input class="form-control" type="text" name="textfield3" />
+        <input class="form-control" type="text" name="textfield3" pattern="[A-Z a-z.]{10,100}" title="Must contain at least 10 or more characters" required/>
       </td>
     </tr>
     <tr>
       <th>Driver_image</th>
       <td>
-        <input class="form-control" type="file" name="textfield4" />
+        <input class="form-control" type="file" name="textfield4" required/>
       </td>
     </tr>
     <tr>
       <th>Driver_email</th>
       <td>
-        <input class="form-control" type="text" name="textfield5" />
+        <input class="form-control" type="text" name="textfield5" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" title="Please enter valid Emailid" required/>
       </td>
     </tr>
     <tr>
       <th>Driver_mobile</th>
       <td>
-        <input class="form-control" type="text" name="textfield6" />
+        <input class="form-control" type="text" name="textfield6" pattern="[6-9]{1}[0-9]{9}" title="Please enter valid Mobileno" required/>
       </td>
     </tr>
     <tr>
       <th>Driver_license</th>
       <td>
-        <input class="form-control" type="text" name="textfield7" />
+        <input class="form-control" type="text" name="textfield7" title="Please enter valid Licenseno" required/>
       </td>
     </tr>
     <tr>
       <th>status</th>
       <td>
-        <select class="form-control" name="select">
+        <select class="form-control" name="select" required>
           <option>current</option>
           <option>backup</option>
         </select>
@@ -73,7 +68,7 @@
     <tr>
       <th></th>
       <td>
-        <input type="submit" name="Submit" value="Add" />
+        <input class="btn btn-primary" type="submit" name="Submit" value="Add" />
         </td>
     </tr>
   </table>

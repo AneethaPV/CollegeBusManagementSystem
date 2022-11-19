@@ -1,0 +1,50 @@
+{% extends 'index_driver.html' %}
+{% block body %}
+
+<div class="card-body">
+    <h5 class="card-title">Driver Leave</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="#">Driver Leave</a></li>
+            <!--<li class="breadcrumb-item active">Default</li>-->
+        </ol>
+    </nav>
+</div>
+
+<div class="col-12">
+    <div class="card">
+<body>
+
+
+<form id="form1" name="form1" method="post" action="/req_leave">
+  <table class="table table-hover datatable">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Reason</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    {% for i in val %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{i['reason']}}</td>
+      <td>{{i['from']}}</td>
+      <td>{{i['to']}}</td>
+      <td>{{i['status']}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+    <input class="btn btn-primary" type="submit" name="Submit" value="Add" />
+</form>
+
+</body>
+
+    </div>
+</div>
+{% endblock %}
+
+

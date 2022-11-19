@@ -1,44 +1,71 @@
 {% extends 'admin_index.html' %}
 {% block body %}
 
+<div class="card-body">
+    <h5 class="card-title">Bus</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="/view_bus">Bus</a></li>
+            <li class="breadcrumb-item active">Edit Bus</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="col-6">
+    <div class="card">
+
+
 <body>
 <form id="form1" name="form1" method="post" action="edit_bus1" enctype="multipart/form-data">
   <table class="table table-hover">
     <tr>
-      <th>Bus_regno</th>
+      <th>Bus_no</th>
       <td><label>
-        <input class="form-control" type="text" name="textfield" value="{{ data['bus_regno'] }}" />
+        <input class="form-control" type="text" name="textfield2" value="{{ data['bus_no'] }}" pattern="([1-9]|[1-9][0-9]|100)" required/>
       </label></td>
     </tr>
     <tr>
-      <th>Bus_no</th>
-      <td><label>
-        <input class="form-control" type="text" name="textfield2" value="{{ data['bus_no'] }}"/>
-      </label></td>
+      <th>Route Name</th>
+      <td>
+        <select class="form-control" name="select" required>
+            <option value="None">None</option>
+            {% for i in data1 %}
+            <option value="{{i['route_id']}}" {% if i['route_id'] == data['route_id'] %}selected{% endif %}>{{i['route_name']}}</option>
+            {% endfor %}
+          </select>
+        <!--<input class="form-control" type="text" name="textfield" value="{{ data['bus_regno'] }}" />-->
+      </td>
     </tr>
     <tr>
       <th>Bus_name</th>
       <td><label>
-        <input class="form-control" type="text" name="textfield3" value="{{ data['bus_name'] }}"/>
+        <input class="form-control" type="text" name="textfield3" value="{{ data['bus_name'] }}" required/>
+      </label></td>
+    </tr>
+    <tr>
+      <th>Bus_regno</th>
+      <td><label>
+        <input class="form-control" type="text" name="textfield" value="{{ data['bus_regno'] }}" pattern="[A-Z]{2}[ -][0-9]{1,2}(?: [A-Z])?(?: [A-Z]*)? [0-9]{4}" required/>
       </label></td>
     </tr>
     <tr>
       <th>Bus_image</th>
       <td><label>
-        <input class="form-control" type="hidden" name="textfield4" value="{{ data['bus_image'] }}"/>
+        <input class="form-control" type="hidden" name="textfield4" value="{{ data['bus_image'] }}" required/>
         <input class="form-control" type="file" name="f" />
       </label></td>
     </tr>
     <tr>
       <th>Seat</th>
       <td><label>
-        <input class="form-control" type="text" name="textfield5" value="{{ data['seat'] }}"/>
+        <input class="form-control" type="text" name="textfield5" value="{{ data['seat'] }}" pattern="([1-9]|[1-9][0-9]|100)" required/>
       </label></td>
     </tr>
     <tr>
       <th>Status</th>
       <td><label>
-      <select class="form-control" name="select" value="{{ data['status'] }}">
+      <select class="form-control" name="select1" value="{{ data['status'] }}" required>
         <option>active</option>
         <option>not active</option>
       </select>
@@ -53,5 +80,7 @@
   </table>
 </form>
 </body>
+    </div>
+</div>
 
 {% endblock %}

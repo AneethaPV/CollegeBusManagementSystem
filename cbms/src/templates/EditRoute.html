@@ -1,35 +1,91 @@
 {% extends 'admin_index.html' %}
 {% block body %}
 
+<div class="card-body">
+    <h5 class="card-title">Route</h5>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admindash"><i class="bi bi-house-door"></i></a></li>
+            <li class="breadcrumb-item"><a href="/view_route">Route</a></li>
+            <li class="breadcrumb-item active">Edit Route</li>
+        </ol>
+    </nav>
+</div>
+
+
 <body>
-<form id="form1" name="form1" method="post" action="edit_route1">
-  <table class="table table-hover">
-    <tr>
-      <th>Route no </th>
-      <td><label>
-        <input class="form-control" type="text" name="textfield" value="{{ data['route_no'] }}"/>
-      </label></td>
-    </tr>
-    <tr>
-      <th>Route code </th>
-      <td><label>
-        <input class="form-control" type="text" name="textfield2" value="{{ data['route_code'] }}" />
-      </label></td>
-    </tr>
-    <tr>
-      <th>Route Name </th>
-      <td><label>
-        <input class="form-control" type="text" name="textfield3"  value="{{ data['route_name'] }}"/>
-      </label></td>
-    </tr>
-    <tr>
-      <th></th>
-      <td><label>
-  <input class="btn btn-dark" type="submit" name="Submit" value="UPDATE" />
-  </label></td>
-    </tr>
-  </table>
+<div class="col-6">
+    <div class="card">
+
+
+<!--<form id="form1" name="form1" method="post" action="edit_route1">-->
+  <!--<table class="table table-hover">-->
+    <!--<tr>-->
+      <!--<th>Route no </th>-->
+      <!--<td><label>-->
+        <!--<input class="form-control" type="text" name="textfield" value="{{ data['route_no'] }}"/>-->
+      <!--</label></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<th>Route code </th>-->
+      <!--<td><label>-->
+        <!--<input class="form-control" type="text" name="textfield2" value="{{ data['route_code'] }}" />-->
+      <!--</label></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<th>Route Name </th>-->
+      <!--<td><label>-->
+        <!--<input class="form-control" type="text" name="textfield3"  value="{{ data['route_name'] }}"/>-->
+      <!--</label></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+      <!--<th></th>-->
+      <!--<td><label>-->
+  <!--<input class="btn btn-dark" type="submit" name="Submit" value="UPDATE" />-->
+  <!--</label></td>-->
+    <!--</tr>-->
+  <!--</table>-->
+<!--</form>-->
+
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <div class="pt-4 pb-2">
+            <!--<h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>-->
+            <!--<p class="text-center small">Enter your personal details to create account</p>-->
+            </div>
+
+<form id="form1" name="form1" class="row g-3 needs-validation" novalidate action="/edit_route1" method="post">
+    <table class="table table-hover">
+
+    <div class="col-12">
+        <label class="form-label"><h5>Route No</h5></label>
+        <input type="text" name="textfield" class="form-control" value="{{ data['route_no'] }}" pattern="([1-9]|[1-9][0-9]|100)" required>
+        <div class="invalid-feedback">Enter no below 100"</div>
+    </div>
+    <div class="col-12">
+        <label class="form-label"><h5>Route Code</h5></label>
+        <input type="text" name="textfield2" class="form-control" value="{{ data['route_code'] }}" pattern="[A-Z]{3,20}" required>
+        <div class="invalid-feedback">All letters must be capital"</div>
+    </div>
+    <div class="col-12">
+        <label class="form-label"><h5>Route Name</h5></label>
+        <input type="text" name="textfield3" class="form-control" value="{{ data['route_name'] }}" pattern="[A-Z -]{3,30}" required>
+        <div class="invalid-feedback">All letters must be capital with hyphon seperated"</div>
+    </div>
+
+    <div class="col-12">
+        <input type="submit" class="btn btn-dark w-100" name="Submit"value="UPDATE"/>
+    </div>
 </form>
 </body>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
 
 {% endblock %}

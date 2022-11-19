@@ -1,0 +1,63 @@
+{% extends 'index_user.html' %}
+{% block body %}
+
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <div id="p">
+  <h3>Bus Fare Receipt</h3>
+  <table class="table" border="1px">
+    <tr>
+      <th>Route</th>
+      <td>{{i['route_name']}}</td>
+    </tr>
+    <tr>
+      <th>Stop</th>
+      <td>{{i['stop_name']}}</td>
+    </tr>
+<tr>
+      <th>Bus</th>
+      <td>{{i['bus_no']}} - {{i['bus_name']}}</td>
+    </tr>
+
+     <tr>
+      <th>Month</th>
+      <td>{{i['year']}} - {{i['month']}}</td>
+    </tr>
+
+    <tr>
+      <th>Amount</th>
+      <td>{{i['amount']}}</td>
+
+    </tr>
+      <tr>
+      <th>Date</th>
+      <td>{{i['datetime']}}</td>
+
+    </tr>
+
+  </table>
+  </div>
+  <table class="table table-borderless">
+    <tr>
+      <th></th>
+      <th><input class="btn btn-primary" type="button" value="Print" onclick="printDiv()"></th>
+    </tr>
+  </table>
+</form>
+<script>
+        function printDiv() {
+            var divContents = document.getElementById("p").innerHTML;
+            var a = window.open('', '', 'height=500, width=500');
+            a.document.write('<html>');
+            a.document.write(divContents);
+            a.document.write('</body></html>');
+            a.document.close();
+            a.print();
+        }
+    </script>
+</body>
+
+
+
+{% endblock %}

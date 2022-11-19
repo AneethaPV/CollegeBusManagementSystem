@@ -20,21 +20,23 @@
   <table class="table table-hover datatable ">
     <thead>
       <tr>
-         <th>#</th>
+         <!--<th>#</th>-->
          <th scope="col">Route_no</th>
          <th>Route_code</th>
          <th>Route_Name</th>
-         <th colspan="2">Action</th>
+         <th colspan="3">Action</th>
       </tr>
     </thead>
     {% for i in val %}
     <tr>
-      <td>{{ loop.index }}</td>
+      <!--<td>{{ loop.index }}</td>-->
       <td>{{i['route_no']}}</td>
       <td>{{i['route_code']}}</td>
       <td>{{i['route_name']}}</td>
       <td><a class="btn btn-success btn-sm" href="/edit_route?id={{ i['route_id'] }}"><i class="bi bi-pencil-square"></i></a></td>
       <td><a class="btn btn-danger btn-sm" href="/delete_route?id={{ i['route_id'] }}"><i class="bi bi-trash"></i></a></td>
+      <td><a class="btn btn-primary " href="/admin_view_route1?id={{ i['route_id'] }}"><i class="bi bi-eye"></i></a></td>
+
     </tr>
     {% endfor %}
     </table>

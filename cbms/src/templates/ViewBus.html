@@ -20,12 +20,14 @@
   <table class="table table-hover datatable">
     <thead>
     <tr>
-      <th>#</th>
-      <th>Bus_regno</th>
+      <!--<th>#</th>-->
       <th>Bus_no</th>
+      <th>Route Name</th>
+      <th>Bus_regno</th>
       <th>Bus_name</th>
       <th>Bus_image</th>
-      <th>seat</th>
+      <th>Total seat</th>
+      <th>Filled seat</th>
       <th>status</th>
       <th colspan="2">Action</th>
       <!--<th></th>-->
@@ -33,12 +35,14 @@
     </thead>
     {% for i in val %}
     <tr>
-      <td>{{ loop.index }}</td>
-      <td>{{i['bus_regno']}}</td>
+      <!--<td>{{ loop.index }}</td>-->
       <td>{{i['bus_no']}}</td>
+      <td>{{i['route_name']}}</td>
+      <td>{{i['bus_regno']}}</td>
       <td>{{i['bus_name']}}</td>
       <td><img src="../static/bus/{{i['bus_image']}}" width="100" height="100"/> </td>
       <td>{{i['seat']}}</td>
+      <td>{{i['available_seat']}}</td>
       <td>{{i['status']}}</td>
       <td><a class="btn btn-success btn-sm" href="/edit_bus?id={{ i['bus_id'] }}"><i class="bi bi-pencil-square"></i></a></td>
       <td><a class="btn btn-danger btn-sm" href="/delete_bus?id={{ i['bus_id'] }}"><i class="bi bi-trash"></i></a></td>
