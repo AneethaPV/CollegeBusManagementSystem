@@ -36,9 +36,9 @@ CREATE TABLE `bus` (
 /*Data for the table `bus` */
 
 insert  into `bus`(`bus_id`,`route_id`,`bus_regno`,`bus_no`,`bus_name`,`bus_image`,`seat`,`status`,`available_seat`) values 
-(19,23,'KL 12 BS 1290',1,'Kmct Polytechnic College','b1.jpg',5,'active','0'),
-(20,23,'KL 12 BS 1340',2,'KMCT College of Engineering','b2.jpg',5,'active','0'),
-(21,24,'KL 12 KH 4567',3,'Kmct Pharmaceuticals College','20221013210120.jpg',5,'active',NULL),
+(19,23,'KL 12 BS 1290',1,'Kmct Polytechnic College','b1.jpg',2,'active','0'),
+(20,23,'KL 12 BS 1340',2,'KMCT College of Engineering','b2.jpg',2,'active','0'),
+(21,24,'KL 12 KH 4567',3,'Kmct Pharmaceuticals College','20221013210120.jpg',5,'active','0'),
 (22,0,'KL 12 TH 7890',4,'Kmct School of Business','p3.webp',5,'not active',NULL),
 (23,0,'KL 12 UV 4531',5,'Kmct College of Architecture','20221014210336.jpg',5,'not active',NULL);
 
@@ -62,11 +62,11 @@ CREATE TABLE `driver` (
 /*Data for the table `driver` */
 
 insert  into `driver`(`driver_id`,`login_id`,`driver_name`,`driver_address`,`driver_image`,`driver_email`,`driver_mobile`,`driver_license`,`status`) values 
-(1,1,'Tony','Kunnil House, Karanthur Kozhikode','d1.jpg','anuaneetha2000@gmail.com',8848644022,'AB 332356789','current'),
-(3,3,'Tom','Thamarath house , kunnamangalam , Kozhikode','d2.jpg','ram2000@gmail.com',7897956546,'GF 2345678909876','current'),
-(5,39,'Chris','Krishna House Mayanad Kozhikode','d3.jpg','krishnan@gmail.com',8848644011,'HR-0619850034761','current'),
-(6,41,'Mark','Valathil House Mundikkal Thazham Kozhikode','d4.jpg','brijith6@gmail.com',8848677722,'HR-0619850034761','backup'),
-(7,46,'Hemsworth','Parapanpoyil House Kozhikode','20221112121655.jpg','chrishemsworth@gmail.com',9988776655,'HR-0619850034567','backup');
+(1,39,'Tony','Kunnil House, Karanthur Kozhikode','d1.jpg','anuaneetha2000@gmail.com',8848644022,'AB 332356789','current'),
+(3,40,'Tom','Thamarath house , kunnamangalam , Kozhikode','d2.jpg','raj22@gmail.com',6785433115,'GF 2345678909876','current'),
+(5,41,'Chris','Krishna House Mayanad Kozhikode','d3.jpg','krishnan@gmail.com',8848644011,'HR-0619850034761','current'),
+(6,42,'Mark','Valathil House Mundikkal Thazham Kozhikode','d4.jpg','brijith6@gmail.com',8848677722,'HR-0619850034761','backup'),
+(7,43,'Hemsworth','Parapanpoyil House Kozhikode','20221112121655.jpg','chrishemsworth@gmail.com',9988776655,'HR-0619850034567','backup');
 
 /*Table structure for table `driverbus` */
 
@@ -79,14 +79,15 @@ CREATE TABLE `driverbus` (
   `from` date DEFAULT NULL,
   `to` date DEFAULT NULL,
   PRIMARY KEY (`driverbus_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `driverbus` */
 
 insert  into `driverbus`(`driverbus_id`,`driver_id`,`bus_id`,`from`,`to`) values 
-(1,1,19,'2022-11-14','2022-12-31'),
-(2,3,20,'2022-11-14','2022-12-31'),
-(3,39,21,'2022-11-14','2022-12-31');
+(4,39,19,'2022-11-18','2022-12-31'),
+(5,40,20,'2022-11-18','2022-12-31'),
+(6,41,21,'2022-11-18','2022-12-31'),
+(7,42,19,'2022-11-12','2022-11-15');
 
 /*Table structure for table `feedback` */
 
@@ -121,16 +122,17 @@ CREATE TABLE `leave` (
   `leave_id` int(11) NOT NULL AUTO_INCREMENT,
   `driver_id` int(11) NOT NULL,
   `reason` varchar(100) NOT NULL,
-  `from` date DEFAULT NULL,
-  `to` date DEFAULT NULL,
-  `status` varchar(20) DEFAULT NULL,
+  `from` date NOT NULL,
+  `to` date NOT NULL,
+  `status` varchar(20) NOT NULL,
   PRIMARY KEY (`leave_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `leave` */
 
 insert  into `leave`(`leave_id`,`driver_id`,`reason`,`from`,`to`,`status`) values 
-(1,39,'sdfghjk','2022-11-12','2022-11-15','verified');
+(1,39,'sdfghjk','2022-11-12','2022-11-15','Assigned'),
+(2,40,'asdfg','2022-11-20','2022-11-24','pending');
 
 /*Table structure for table `login` */
 
@@ -156,10 +158,10 @@ insert  into `login`(`login_id`,`username`,`password`,`usertype`) values
 (36,'briji22','Briji@2001','user'),
 (37,'junaid.22','Junaid@20','user'),
 (39,'anuaneetha2000@gmail.com','8848644022','driver'),
-(41,'raj22@gmail.com','6785433115','driver'),
+(40,'raj22@gmail.com','6785433115','driver'),
+(43,'chrishemsworth@gmail.com','9988776655','driver'),
 (44,'Elka_29875','Elka Ajith22','user'),
-(45,'Kavya_34','Kavya@3456','user'),
-(46,'chrishemsworth@gmail.com','9988776655','driver');
+(45,'Kavya_34','Kavya@3456','user');
 
 /*Table structure for table `notification` */
 
@@ -170,7 +172,7 @@ CREATE TABLE `notification` (
   `notification` varchar(100) DEFAULT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`notification_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `notification` */
 
@@ -178,7 +180,8 @@ insert  into `notification`(`notification_id`,`notification`,`date`) values
 (2,'Bus late by 100 mins','2022-10-03'),
 (4,'Pay the fees on or before 05-10-22','2022-10-10'),
 (5,'Tomorrow no bus service','2022-10-10'),
-(7,'On 10-10-22...Bus will be early by 15 mins','2022-10-09');
+(7,'On 10-10-22...Bus will be early by 15 mins','2022-10-09'),
+(8,'qwertyui','2022-11-16');
 
 /*Table structure for table `payment` */
 
@@ -196,14 +199,18 @@ CREATE TABLE `payment` (
   `status` varchar(15) NOT NULL,
   `pid` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`pay_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 /*Data for the table `payment` */
 
 insert  into `payment`(`pay_id`,`login_id`,`stop_id`,`bus_id`,`year`,`month`,`amount`,`datetime`,`status`,`pid`) values 
 (1,15,19,19,2022,'January',1300,'2022-11-12','paid','pay_Kf2NssRrHURrUs'),
 (2,15,19,19,2022,'February',1300,'2022-11-12','paid','pay_Kf2P08CF3u9MEf'),
-(3,0,0,0,2022,'January',1300,'2022-11-12','paid',NULL);
+(10,15,17,19,2022,'March',500,'2022-11-16','paid','pay_Kgl6Lyx3Yoa4Tq'),
+(13,15,17,19,2022,'April',500,'2022-11-16','paid','pay_KglUxsDuctJaD6'),
+(15,15,17,19,2022,'May',500,'2022-11-16','paid','pay_KglWKmFCZ8EvZ0'),
+(20,15,17,19,2022,'November',500,'2022-11-20','paid','pay_KiCogi9yNVWZqK'),
+(25,15,17,19,2022,'October',500,'2022-11-20','paid','pay_KiD7VFhFMgYMkL');
 
 /*Table structure for table `registration` */
 
@@ -271,7 +278,7 @@ CREATE TABLE `stop` (
   `mrngtime` time NOT NULL,
   `evngtime` time NOT NULL,
   PRIMARY KEY (`stop_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 /*Data for the table `stop` */
 

@@ -22,6 +22,7 @@
       <!--<th>#</th>-->
       <th>Bus name</th>
       <th>Driver name</th>
+      <th>Status</th>
       <th>From</th>
       <th>To</th>
       <th colspan="2">Action</th>
@@ -32,6 +33,7 @@
       <!--<td>{{ loop.index }}</td>-->
       <td>{{i['bus_name']}}</td>
       <td>{{i['driver_name']}}</td>
+      <td>{{i['status']}}</td>
       <td>{{i['from']}}</td>
       <td>{{i['to']}}</td>
       <td><a class="btn btn-success btn-sm" href="/editdriverbus?id={{ i['driverbus_id'] }}"><i class="bi bi-pencil-square"></a></td>

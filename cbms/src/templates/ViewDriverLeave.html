@@ -34,7 +34,13 @@
       <td>{{i['reason']}}</td>
       <td>{{i['from']}}</td>
       <td>{{i['to']}}</td>
-      <td>{% if i['status']== "pending" %}<a class="btn btn-primary btn-sm" href="/leave_request1?id={{i['leave_id']}}">Verify</a>{% else %} verified {% endif %}</td>
+      {% if i['status']== "pending" %}
+        <td><a class="btn btn-primary btn-sm" href="/leave_request1?id={{i['leave_id']}}">Verify</a></td>
+          {% elif i['status']=="verified" %}
+        <td><a class="btn btn-success btn-sm" href="/leave_assign?id={{i['bus_id']}}">Assign</a></td>
+          {% else %}
+        <td>{{ i['status'] }}</td>
+          {% endif %}</td>
     </tr>
     {% endfor %}
   </table>

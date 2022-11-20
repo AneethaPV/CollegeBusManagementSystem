@@ -80,6 +80,7 @@ def login():
             return '''<script>alert("invaild");window.location="login_index"</script>'''
 
 
+
 @app.route('/adminhome')
 @login_required
 def adminhome():
@@ -647,15 +648,28 @@ def delete_notification():
     return '''<script>alert("Deleted sucessfully");window.location="view_notification"</script>'''
 
 
-
-
 @app.route('/view_feedback')
 @login_required
 def view_feedback():
-    qry = "SELECT * FROM feedback"
-    res = selectall(qry)
-    return render_template('ViewFeedback.html', val=res)
+        return render_template('ViewFeedback.html')
 
+
+
+@app.route('/view_feedback1',methods=['post'])
+@login_required
+def view_feedback1():
+    user=request.form['select']
+    if user=="user":
+        qry = "SELECT `feedback`.*,`registration`.`name` FROM `feedback` JOIN `registration` ON `feedback`.`login_id`=`registration`.`login_id`"
+        res = selectall(qry)
+        return render_template('ViewFeedback.html', val=res)
+
+    elif user=="driver":
+        qry = "SELECT `feedback`.*,`driver`.`driver_name` AS `name` FROM `feedback` JOIN `driver` ON `feedback`.`login_id`=`driver`.`login_id`"
+        res = selectall(qry)
+        return render_template('ViewFeedback.html', val=res)
+    elif user=='None':
+        return render_template('ViewFeedback.html', status="ok")
 
 
 @app.route('/reply_feedback')
@@ -682,7 +696,7 @@ def insert_reply():
 @app.route('/viewdriverbus')
 @login_required
 def viewdriverbus():
-    qry = "SELECT `bus`.`bus_name`,`driver`.`driver_name`,`driverbus`.`driverbus_id`,`driverbus`.`from`,`driverbus`.`to` FROM `bus` JOIN `driverbus` ON `bus`.`bus_id`=`driverbus`.`bus_id` JOIN `driver` ON `driver`.`login_id`=`driverbus`.`driver_id`"
+    qry = "SELECT `bus`.`bus_name`,`driver`.*,`driverbus`.`driverbus_id`,`driverbus`.`from`,`driverbus`.`to` FROM `bus` JOIN `driverbus` ON `bus`.`bus_id`=`driverbus`.`bus_id` JOIN `driver` ON `driver`.`login_id`=`driverbus`.`driver_id`"
     #Here DriverBus - Driverid is Driver - Loginid
     res = selectall(qry)
     return render_template('ViewDriverBus.html',val=res)
@@ -756,12 +770,47 @@ def adddriverbus1():
 
 
 @app.route('/deletedriverbus')
-@login_required
 def deletedriverbus():
-    id = request.args.get('id')
+    # id = request.args.get('id')
+
+    # q = "SELECT `driverbus`.* ,`driver`.`driver_name`,`driver_email` FROM `driverbus` JOIN `driver` ON `driverbus`.`driver_id`=`driver`.`driver_id` WHERE `driverbus`.`driverbus_id`=%s"
+    # res = selectone(q, id)
+    #
+    # if res is None:
+    #     qq=" SELECT * FROM `driverbus` WHERE `driverbus_id`=%s"
+    #     drrid=selectall2(qq,id)
+    #     print(drrid,"======================================================================")
+    #
+    #     qr = "SELECT * FROM `driver` WHERE `login_id`=%s"
+    #     re = selectone(qr,drrid['driver_id'])
+    #
+    #     email = re['driver_email']
+    #     name = re['driver_name']
+    #     if re is None:
+    #         return '''<script>alert("invalid mail");window.location="viewdriverbus"</script>'''
+    #     else:
+    #         try:
+    #             gmail = smtplib.SMTP('smtp.gmail.com', 587)
+    #             gmail.ehlo()
+    #             gmail.starttls()
+    #             gmail.login('aneethawork@gmail.com', 'wtmbqwyvrrdfjvdf')
+    #         except Exception as e:
+    #             print("Couldn't setup email!!" + str(e))
+    #         msg = MIMEText(
+    #             "Hello " + name + "\nYour Assigned schedule is cancelled. Will update with new information")
+    #         print(msg)
+    #         msg['Subject'] = 'Driver Schedule Cancelled'
+    #         msg['To'] = str(email)
+    #         msg['From'] = 'aneethawork@gmail.com'
+    #         try:
+    #             gmail.send_message(msg)
+    #         except Exception as e:
+    #             print("COULDN'T SEND EMAIL", str(e))
     qry="DELETE FROM driverbus WHERE `driverbus_id`=%s"
     iud(qry,id)
     return '''<script>alert("Deleted sucessfully");window.location="viewdriverbus"</script>'''
+
+
 
 
 @app.route('/editdriverbus')
@@ -837,9 +886,12 @@ def editdriverbus1():
 @app.route('/leave_request')
 @login_required
 def leave_request():
-    qry = "SELECT `leave`.*,`driver`.`driver_name` FROM `leave` JOIN `driver` ON `driver`.`login_id`=`leave`.`driver_id`"
+    # qry = "SELECT `leave`.*,`driver`.`driver_name` FROM `leave` JOIN `driver` ON `driver`.`login_id`=`leave`.`driver_id`"
+    qry = "SELECT `leave`.*,`driver`.`driver_name`,`driverbus`.`driver_id`,`bus_id` FROM `leave` JOIN `driver` ON `driver`.`login_id`=`leave`.`driver_id` JOIN `driverbus` ON `leave`.`driver_id`=`driverbus`.`driver_id` ORDER BY `leave_id` DESC"
     res = selectall(qry)
     return render_template('ViewDriverLeave.html',val=res)
+
+
 
 
 
@@ -847,9 +899,42 @@ def leave_request():
 @login_required
 def leave_request1():
     id=request.args.get('id')
+    session['leaveid']=id
     qry = "UPDATE `leave` SET `status`='verified' WHERE `leave_id`=%s"
     iud(qry,str(id))
     return '''<script>alert("Updated sucessfully");window.location="leave_request"</script>'''
+
+
+
+@app.route('/leave_assign')
+@login_required
+def leave_assign():
+    id=request.args.get('id')
+    session['busid']=id
+
+    qry="SELECT * FROM `leave` WHERE `leave_id`=%s"
+    res=selectone(qry,str(session['leaveid']))
+
+    qry1="SELECT * FROM `driver` WHERE `status`='backup'"
+    res1=selectall(qry1)
+
+    return render_template('LeaveAssign.html',data=res1,val=res)
+
+
+@app.route('/leave_assign1',methods=['post'])
+@login_required
+def leave_assign1():
+    drid=request.form['select1']
+    f = request.form['textfield']
+    t = request.form['textfield2']
+    qry = "INSERT INTO driverbus VALUES(null,%s,%s,%s,%s)"
+    val = (drid, str(session['busid']), f, t)
+    iud(qry, val)
+
+    qry1="UPDATE `leave` SET `status`='Assigned' WHERE `leave_id`=%s"
+    iud(qry1,str(session['leaveid']))
+    return '''<script>alert("Assigned sucessfully");window.location="leave_request"</script>'''
+
 
 
 
@@ -1041,7 +1126,8 @@ def pay_proceed1():
 
     qry = "INSERT INTO payment VALUES(null,%s,%s,%s,%s,%s,%s,now(),'notpaid','ps')"
     val = (session['lid'], stop, bus, year, month, amt)
-    iud(qry, val)
+    res=iud(qry, val)
+    session['paymentnumber']=str(res)
 
     if int(ree['count1'])<=int(av_seat):
         # iud("UPDATE `bus` SET `available_seat`=%s where bus_id=%s",(ree['count1'],bus))
@@ -1092,8 +1178,10 @@ def user_pay_complete():
     except Exception as e:
         print("COULDN'T SEND EMAIL", str(e))
 
-    qry = "INSERT INTO payment VALUES(null,%s,%s,%s,%s,%s,%s,now(),'paid',%s)"
-    val = (session['lid'], stop, bus, year, month, amt,pid)
+    qry = "UPDATE `payment` SET `status`='paid',`pid`=%s WHERE `pay_id`=%s"
+    # qry = "INSERT INTO payment VALUES(null,%s,%s,%s,%s,%s,%s,now(),'paid',%s)"
+    val = (pid,str(session['paymentnumber']))
+    # val = (session['lid'], stop, bus, year, month, amt,pid)
     iud(qry, val)
 
     return '''<script>alert("payment successful");window.location="user_pay_history"</script>'''
@@ -1131,7 +1219,8 @@ def user_pay_history():
 @login_required
 def user_pay_history1():
     id=request.args.get('id')
-    qry = "SELECT * FROM `payment` JOIN `bus` ON `bus`.`bus_id`=`payment`.`bus_id` JOIN `stop` ON `stop`.`stop_id`=`payment`.`stop_id` JOIN `route` ON `route`.`route_id`=`stop`.`route_id` WHERE `payment`.`pay_id`=%s"
+    qry = "SELECT * FROM `payment` JOIN `bus` ON `bus`.`bus_id`=`payment`.`bus_id` JOIN `stop` ON `stop`.`stop_id`=`payment`.`stop_id` JOIN `route` ON `route`.`route_id`=`stop`.`route_id` JOIN `registration` ON `registration`.`login_id`=`payment`.`login_id` WHERE `payment`.`pay_id`=%s"
+    # qry = "SELECT * FROM `payment` JOIN `bus` ON `bus`.`bus_id`=`payment`.`bus_id` JOIN `stop` ON `stop`.`stop_id`=`payment`.`stop_id` JOIN `route` ON `route`.`route_id`=`stop`.`route_id` WHERE `payment`.`pay_id`=%s"
     res = selectone(qry,id)
     print(res)
     return render_template('UserPaymentHistory1.html',i=res)
@@ -1265,7 +1354,9 @@ def driverdash():
 @app.route('/indexdriver')
 @login_required
 def indexdriver():
-        return render_template('index_driver.html')
+    qry="SELECT * FROM `driver` WHERE `login_id`=%s"
+    res=selectone(qry,str(session['lid']))
+    return render_template('index_driver.html',val=res)
 
 
 
@@ -1312,8 +1403,8 @@ def view_travellers():
 
 @app.route('/driver_leave')
 def driver_leave():
-    qry = "SELECT * FROM `leave`"
-    res = selectall(qry)
+    qry = "SELECT * FROM `leave` WHERE driver_id=%s"
+    res = selectall2(qry,str(session['lid']))
     return render_template('DriverLeave.html',val=res)
 
 
@@ -1327,12 +1418,12 @@ def req_leave():
 
 
 
-@app.route('/req_leave1', methods=['post','get'])
+@app.route('/req_leave1', methods=['post'])
 def req_leave1():
     r = request.form['rsn']
     f = request.form['frm']
     t = request.form['to']
-    qry = "INSERT INTO leave VALUES(null,%s,%s,%s,%s,'pending')"
+    qry = "INSERT INTO `leave`(`driver_id`,`reason`,`from`,`to`,`status`) VALUES (%s,%s,%s,%s,'pending')"
     val = (session['lid'],r,f,t)
     iud(qry,val)
     return '''<script>alert("Send sucessfully");window.location="driver_leave"</script>'''
