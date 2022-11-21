@@ -611,11 +611,39 @@ def add_notification():
 
 @app.route('/add_notification1', methods=['post'])
 def add_notification1():
+
     noti = request.form['textfield']
     qry = "INSERT into notification VALUES(null,%s,curdate())"
     val =(noti)
     iud(qry, val)
-    return '''<script>alert("Inserted sucessfully");window.location="view_notification"</script>'''
+
+    # qr=" SELECT `email` FROM `registration`"
+    # res=selectall(qr)
+    # print(res)
+    #
+    #
+    # try:
+    #     gmail = smtplib.SMTP('smtp.gmail.com', 587)
+    #     gmail.ehlo()
+    #     gmail.starttls()
+    #     gmail.login('aneethawork@gmail.com', 'wtmbqwyvrrdfjvdf')
+    # except Exception as e:
+    #     print("Couldn't setup email!!" + str(e))
+    # msg = MIMEText("Notification from QUICKBUS:" + noti)
+    # print(msg)
+    # for i in res:
+    #     msg['Subject'] = 'Driver Login'
+    #     msg['To'] =i['email']
+    #     msg['From'] = 'aneethawork@gmail.com'
+    # try:
+    #     gmail.send_message(msg)
+    # except Exception as e:
+    #     print("COULDN'T SEND EMAIL", str(e))
+
+    return '''<script>alert("Inserted successfully");window.location="view_notification"</script>'''
+
+
+
 
 
 
@@ -771,11 +799,15 @@ def adddriverbus1():
 
 @app.route('/deletedriverbus')
 def deletedriverbus():
-    # id = request.args.get('id')
-
+    id = request.args.get('id')
     # q = "SELECT `driverbus`.* ,`driver`.`driver_name`,`driver_email` FROM `driverbus` JOIN `driver` ON `driverbus`.`driver_id`=`driver`.`driver_id` WHERE `driverbus`.`driverbus_id`=%s"
-    # res = selectone(q, id)
-    #
+    q=" SELECT `driver`.`driver_name`,`driver_email` FROM `driver` WHERE `login_id` IN(SELECT `driver_id` FROM `driverbus` WHERE `driverbus_id`=%s)"
+    res = selectone(q, id)
+    print(res)
+    email=res['driver_email']
+    name=res['driver_name']
+
+
     # if res is None:
     #     qq=" SELECT * FROM `driverbus` WHERE `driverbus_id`=%s"
     #     drrid=selectall2(qq,id)
@@ -789,25 +821,28 @@ def deletedriverbus():
     #     if re is None:
     #         return '''<script>alert("invalid mail");window.location="viewdriverbus"</script>'''
     #     else:
-    #         try:
-    #             gmail = smtplib.SMTP('smtp.gmail.com', 587)
-    #             gmail.ehlo()
-    #             gmail.starttls()
-    #             gmail.login('aneethawork@gmail.com', 'wtmbqwyvrrdfjvdf')
-    #         except Exception as e:
-    #             print("Couldn't setup email!!" + str(e))
-    #         msg = MIMEText(
-    #             "Hello " + name + "\nYour Assigned schedule is cancelled. Will update with new information")
-    #         print(msg)
-    #         msg['Subject'] = 'Driver Schedule Cancelled'
-    #         msg['To'] = str(email)
-    #         msg['From'] = 'aneethawork@gmail.com'
-    #         try:
-    #             gmail.send_message(msg)
-    #         except Exception as e:
-    #             print("COULDN'T SEND EMAIL", str(e))
-    qry="DELETE FROM driverbus WHERE `driverbus_id`=%s"
-    iud(qry,id)
+    try:
+        gmail = smtplib.SMTP('smtp.gmail.com', 587)
+        gmail.ehlo()
+        gmail.starttls()
+        gmail.login('aneethawork@gmail.com', 'wtmbqwyvrrdfjvdf')
+    except Exception as e:
+        print("Couldn't setup email!!" + str(e))
+    msg = MIMEText(
+        "Hello " + name + "\nYour Assigned schedule is cancelled. Will update with new information. To know the details login and check the Quickbus website")
+    print(msg)
+    msg['Subject'] = 'Driver Schedule Cancelled'
+    msg['To'] = str(email)
+    msg['From'] = 'aneethawork@gmail.com'
+
+
+    qry = "DELETE FROM driverbus WHERE `driverbus_id`=%s"
+    iud(qry, id)
+    try:
+        gmail.send_message(msg)
+    except Exception as e:
+        print("COULDN'T SEND EMAIL", str(e))
+
     return '''<script>alert("Deleted sucessfully");window.location="viewdriverbus"</script>'''
 
 
@@ -943,7 +978,7 @@ def leave_assign1():
 @login_required
 def report():
     amt = []
-    m=['January', 'February', 'March', 'April', 'May', 'June', 'July','Aug','Sep','Oct','Nov','Dec']
+    m=['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December']
     for i in m:
         qry="SELECT `month`,SUM(`amount`) AS amt FROM `payment` where month=%s and year=year(curdate())"
         res=selectone(qry,i)
@@ -1105,6 +1140,7 @@ def pay_proceed():
     return render_template('UserPaySummary.html',data=res)
 
 
+
 @app.route('/pay_proceed1', methods=['post'])
 @login_required
 def pay_proceed1():
@@ -1115,9 +1151,9 @@ def pay_proceed1():
     month = session['month']
     amt = session['amt1']
 
-    re = selectone("SELECT * FROM `bus` WHERE `bus_id`=%s",bus)
-    ree = selectone("SELECT COUNT(`pay_id`) as count1 FROM `payment` WHERE `bus_id`=%s AND `month`=%s AND `status`='paid'",(bus,month))
-    av_seat=re['seat']
+    # re = selectone("SELECT * FROM `bus` WHERE `bus_id`=%s",bus)
+    # ree = selectone("SELECT COUNT(`pay_id`) as count1 FROM `payment` WHERE `bus_id`=%s AND `month`=%s AND `status`='paid'",(bus,month))
+    # av_seat=re['seat']
 
 
     q="UPDATE registration SET bus_id=%s WHERE login_id=%s"
@@ -1128,12 +1164,14 @@ def pay_proceed1():
     val = (session['lid'], stop, bus, year, month, amt)
     res=iud(qry, val)
     session['paymentnumber']=str(res)
+    return '''<script>alert("Directed to payment gateway");window.location="user_pay_proceed"</script>'''
 
-    if int(ree['count1'])<=int(av_seat):
-        # iud("UPDATE `bus` SET `available_seat`=%s where bus_id=%s",(ree['count1'],bus))
-        return '''<script>alert("Directed to payment gateway");window.location="user_pay_proceed"</script>'''
-    else:
-        return '''<script>alert("Seats are full");window.location="user_pay_proceed"</script>'''
+
+    # if int(ree['count1'])<=int(av_seat):
+    #     iud("UPDATE `bus` SET `available_seat`=%s where bus_id=%s",(ree['count1'],bus))
+    #     return '''<script>alert("Directed to payment gateway");window.location="user_pay_proceed"</script>'''
+    # else:
+    #     return '''<script>alert("Seats are full");window.location="user_pay_proceed"</script>'''
 
 
 

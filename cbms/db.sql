@@ -65,7 +65,7 @@ insert  into `driver`(`driver_id`,`login_id`,`driver_name`,`driver_address`,`dri
 (1,39,'Tony','Kunnil House, Karanthur Kozhikode','d1.jpg','anuaneetha2000@gmail.com',8848644022,'AB 332356789','current'),
 (3,40,'Tom','Thamarath house , kunnamangalam , Kozhikode','d2.jpg','raj22@gmail.com',6785433115,'GF 2345678909876','current'),
 (5,41,'Chris','Krishna House Mayanad Kozhikode','d3.jpg','krishnan@gmail.com',8848644011,'HR-0619850034761','current'),
-(6,42,'Mark','Valathil House Mundikkal Thazham Kozhikode','d4.jpg','brijith6@gmail.com',8848677722,'HR-0619850034761','backup'),
+(6,42,'Mark','Valathil House Mundikkal Thazham Kozhikode','d4.jpg','anuaneetha2000@gmail.com',8848677722,'HR-0619850034761','backup'),
 (7,43,'Hemsworth','Parapanpoyil House Kozhikode','20221112121655.jpg','chrishemsworth@gmail.com',9988776655,'HR-0619850034567','backup');
 
 /*Table structure for table `driverbus` */
@@ -79,15 +79,14 @@ CREATE TABLE `driverbus` (
   `from` date DEFAULT NULL,
   `to` date DEFAULT NULL,
   PRIMARY KEY (`driverbus_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `driverbus` */
 
 insert  into `driverbus`(`driverbus_id`,`driver_id`,`bus_id`,`from`,`to`) values 
 (4,39,19,'2022-11-18','2022-12-31'),
 (5,40,20,'2022-11-18','2022-12-31'),
-(6,41,21,'2022-11-18','2022-12-31'),
-(7,42,19,'2022-11-12','2022-11-15');
+(6,41,21,'2022-11-18','2022-12-31');
 
 /*Table structure for table `feedback` */
 
@@ -110,7 +109,7 @@ insert  into `feedback`(`feedback_id`,`login_id`,`feedback`,`date`,`response`) v
 (3,15,'payment will be late','2022-10-10','Pay before 15-10-22'),
 (4,15,'Bus didnt stop','2022-10-10','Sorry for the inconvenience'),
 (5,15,'Payment is late','2022-10-11','pending'),
-(6,41,'Bus punctured','2022-10-16','pending'),
+(6,41,'Bus punctured','2022-10-16','Ok'),
 (7,15,'Payment not done','2022-10-16','pending'),
 (8,39,'Bus engine problem','2022-10-16','pending');
 
@@ -131,8 +130,8 @@ CREATE TABLE `leave` (
 /*Data for the table `leave` */
 
 insert  into `leave`(`leave_id`,`driver_id`,`reason`,`from`,`to`,`status`) values 
-(1,39,'sdfghjk','2022-11-12','2022-11-15','Assigned'),
-(2,40,'asdfg','2022-11-20','2022-11-24','pending');
+(1,39,'Marriage function','2022-11-12','2022-11-15','Assigned'),
+(2,40,'Hospital','2022-11-20','2022-11-24','Assigned');
 
 /*Table structure for table `login` */
 
@@ -158,7 +157,7 @@ insert  into `login`(`login_id`,`username`,`password`,`usertype`) values
 (36,'briji22','Briji@2001','user'),
 (37,'junaid.22','Junaid@20','user'),
 (39,'anuaneetha2000@gmail.com','8848644022','driver'),
-(40,'raj22@gmail.com','6785433115','driver'),
+(40,'tonystark@gmail.com','6785433115','driver'),
 (43,'chrishemsworth@gmail.com','9988776655','driver'),
 (44,'Elka_29875','Elka Ajith22','user'),
 (45,'Kavya_34','Kavya@3456','user');
@@ -172,16 +171,18 @@ CREATE TABLE `notification` (
   `notification` varchar(100) DEFAULT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`notification_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 /*Data for the table `notification` */
 
 insert  into `notification`(`notification_id`,`notification`,`date`) values 
-(2,'Bus late by 100 mins','2022-10-03'),
+(2,'Bus late by 10 mins','2022-10-03'),
 (4,'Pay the fees on or before 05-10-22','2022-10-10'),
 (5,'Tomorrow no bus service','2022-10-10'),
 (7,'On 10-10-22...Bus will be early by 15 mins','2022-10-09'),
-(8,'qwertyui','2022-11-16');
+(8,'Bus no 1 KMCT polytechnic college has changed','2022-11-16'),
+(10,'Bus late because of auditing','2022-11-21'),
+(13,'late by five minutes','2022-11-21');
 
 /*Table structure for table `payment` */
 
@@ -199,7 +200,7 @@ CREATE TABLE `payment` (
   `status` varchar(15) NOT NULL,
   `pid` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`pay_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 /*Data for the table `payment` */
 
@@ -209,8 +210,13 @@ insert  into `payment`(`pay_id`,`login_id`,`stop_id`,`bus_id`,`year`,`month`,`am
 (10,15,17,19,2022,'March',500,'2022-11-16','paid','pay_Kgl6Lyx3Yoa4Tq'),
 (13,15,17,19,2022,'April',500,'2022-11-16','paid','pay_KglUxsDuctJaD6'),
 (15,15,17,19,2022,'May',500,'2022-11-16','paid','pay_KglWKmFCZ8EvZ0'),
-(20,15,17,19,2022,'November',500,'2022-11-20','paid','pay_KiCogi9yNVWZqK'),
-(25,15,17,19,2022,'October',500,'2022-11-20','paid','pay_KiD7VFhFMgYMkL');
+(33,15,17,19,2022,'July',500,'2022-11-21','paid','pay_KiZgEglPLQeScq'),
+(34,15,17,19,2022,'August',500,'2022-11-21','paid','pay_KiZh83yqiHSQHU'),
+(35,15,17,19,2022,'September',500,'2022-11-21','paid','pay_KiZiBFfrYQsrVB'),
+(36,15,17,19,2022,'October',500,'2022-11-21','paid','pay_KiZj2f6KZ1e3gS'),
+(37,15,19,19,2022,'November',1300,'2022-11-21','paid','pay_KiZk4VFobHb69W'),
+(38,15,19,19,2022,'December',1300,'2022-11-21','paid','pay_KiZktVjej2RQbO'),
+(39,16,29,21,2022,'October',1450,'2022-11-21','paid','pay_KiZmPt4Z6fgmsz');
 
 /*Table structure for table `registration` */
 
@@ -236,9 +242,9 @@ CREATE TABLE `registration` (
 
 insert  into `registration`(`user_id`,`login_id`,`name`,`email`,`mobile`,`address`,`college`,`category`,`department`,`designation`,`bus_id`) values 
 (10,15,'Aneetha PV','anuaneetha2000@gmail.com',8848644022,'Padinjare Valathil (H),  Chathamangalam PO, Rec Nit, 673601','KMCT College of Engineering','Student','MCA','3',19),
-(11,16,'Amrutha','amrutha20@gmail.com',9349494949,'Valathil (H),  Kunnamangalam PO, Rec Nit, 673601','KMCT College of Engineering','Student','MBA','4',19),
-(15,20,'Aiswarya','aisu23566@gmail.com',9876543210,'padanilam house, Kunnamangalam','KMCT College of Engineering for Women','Student','MCA','5',NULL),
-(18,35,'Sanan PV','sananpv@gmail.com',7896543210,'Kutipuram Malapuram ','KMCT College of Engineering','Student','MCA','8',NULL),
+(11,16,'Amrutha','sajithanand99@gmail.com',9349494949,'Valathil (H),  Kunnamangalam PO, Rec Nit, 673601','KMCT College of Engineering','Student','MBA','4',21),
+(15,20,'Aiswarya','rithazna@gmail.com',9876543210,'padanilam house, Kunnamangalam','KMCT College of Engineering for Women','Student','MCA','5',NULL),
+(18,35,'Sanan PV','aswinjayakrishna9423@gmail.com',7896543210,'Kutipuram Malapuram ','KMCT College of Engineering','Student','MCA','8',NULL),
 (19,36,'Briji','briji@gmail.com',8921383950,'Kalathil (H),  Kunnamangalam PO, Rec Nit, 673601','KMCT College of Engineering','Staff','MBA','Teacher',NULL),
 (20,37,'Junaid','junaid@gmail.com',8765436790,'Junuveetil (H),  Kutipuram, Malappuram','KMCT College of Teacher Education','Staff','BTECH MECHANICAL ENGINEERING','Teacher',NULL),
 (21,44,'Elka Ajith','elka31@gmail.com',6754367281,'Sumi house,  Kunnamangalam PO Near Church','KMCT College of Architecture','Staff','BARCH','Teacher',NULL),
@@ -278,7 +284,7 @@ CREATE TABLE `stop` (
   `mrngtime` time NOT NULL,
   `evngtime` time NOT NULL,
   PRIMARY KEY (`stop_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 /*Data for the table `stop` */
 
@@ -294,7 +300,8 @@ insert  into `stop`(`stop_id`,`route_id`,`stop_name`,`stop_fees`,`latitude`,`lon
 (29,24,'Mundikkal Thazham',1450,11.2858,75.858,'09:32:00','21:32:00'),
 (30,24,'Medical College',1600,11.2722,75.8372,'09:33:00','21:33:00'),
 (31,24,'Kozhikode',1750,11.2588,75.7804,'09:36:00','21:36:00'),
-(32,29,'new bus stand',3456,11.3122,75.7865,'09:47:00','21:47:00');
+(32,29,'new bus stand',3456,11.3122,75.7865,'09:47:00','21:47:00'),
+(34,26,'Kallanthode',500,11.318,75.9495,'08:55:00','16:15:00');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
